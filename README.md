@@ -1,0 +1,2 @@
+# -xDarkSpeed
+Discord: lazurflame
