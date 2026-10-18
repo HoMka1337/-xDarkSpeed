@@ -1,0 +1,90 @@
+- type: antag
+  id: SpaceNinja
+  name: roles-antag-space-ninja-name
+  antagonist: true
+  setPreference: false
+  playTimeTracker: AntagNinja # Sunrise-Edit
+  objective: roles-antag-space-ninja-objective
+  guides: [ SpaceNinja ]
+  storytellerStress: 5.0 # Sunrise-Edit
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: SpaceNinja
+  spawnerPrototype: SpawnPointGhostSpaceNinja
+  pickPlayer: false
+  startingGear: SpaceNinjaGear
+  roleLoadout:
+  - RoleSurvivalSpaceNinja
+  briefing:
+    text: ninja-role-greeting
+    color: Green
+    sound: /Audio/Misc/ninja_greeting.ogg
+  components:
+  # Sunrise edit start - настройки ниндзя из событийного определения до рефакторинга антагонистов
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-ninja-name
+    description: ghost-panel-antagonist-ninja-description
+    priority: 40
+  # Sunrise edit end
+  - type: SpaceNinja
+  - type: NpcFactionMember
+    factions:
+    - SpiderClan # Sunrise-Edit
+  - type: AutoImplant
+    implants:
+    # Sunrise edit start - собственный набор имплантов ниндзя
+    - RedspaceImplant
+    - MicroBombImplant
+    - StimpackImplant
+    - ReviverImplant
+    - NutrimentImplant
+    # Sunrise edit end
+  - type: RandomMetadata
+    nameSegments:
+    - NamesNinjaTitle
+    - NamesNinja
+    nameFormat: name-format-ninja
+  mindRoles:
+  - MindRoleNinja
+
+#Ninja Gear
+- type: startingGear
+  id: SpaceNinjaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNinja
+    back: ClothingBackpackSatchelNinja
+    mask: ClothingMaskNinja
+    head: ClothingHeadHelmetSpaceNinja
+    eyes: ClothingEyesVisorNinja
+    gloves: ClothingHandsGlovesSpaceNinja
+    outerClothing: ClothingOuterSuitSpaceNinja
+    shoes: ClothingShoesSpaceNinjaBiocode # Sunrise-Edit
+    id: NinjaPDA
+    ears: ClothingHeadsetNinja
+    pocket1: SpiderCharge
+    pocket2: PinpointerStation
+    belt: EnergyKatana
+  inhand:
+    - JetpackBlackFilled
+  storage:
+    back: # belt holds katana so satchel has the tools for sabotaging things
+    - Crowbar
+    - Wrench
+    - Screwdriver
+    - Wirecutter
+    - Welder
+    - Multitool
+    - EmergencyMedipen
+    - Flare
+    # - FoodSnackNutribrick  # Sunrise-Edit
+    # - DrinkWaterBottleFull  # Sunrise-Edit
+    - MedkitCombatFilled  # Sunrise-Add
+
+- type: chameleonOutfit
+  id: NinjaChameleonOutfit
+  name: roles-antag-space-ninja-name
+  icon: "JobIconNinja"
+  startingGear: SpaceNinjaGear
+  equipment:
+    neck: ClothingNeckGoldmedal

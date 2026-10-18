@@ -1,0 +1,14 @@
+lust-options-fps-limit = Frame rate limit:
+lust-options-fps-limit-tooltip = Limits frame rate and GPU load. Only applies when vertical sync is disabled.
+lust-options-fps-unlimited = Unlimited
+lust-options-fps-value = { $fps } FPS
+lust-options-effects-heading = Graphics and effects
+lust-options-parallax = Show space background
+lust-options-parallax-tooltip = Disabling this skips the space background layers during gameplay.
+lust-options-sun-shadows = Show sun shadows
+lust-options-sun-shadows-tooltip = Decorative shadows on maps with sunlight. Disabling this removes the separate shadow rendering pass.
+lust-options-ambient-blur = Ambient lighting blur
+lust-options-ambient-blur-tooltip = Smooths the edges of ambient lighting. Disabling this reduces blur passes.
+lust-options-low-spec = Low-end PC preset
+lust-options-low-spec-tooltip = Low lighting quality and scene resolution, with no space background, sun shadows, ambient blur, ambient occlusion or bloom. Caps frame rate at 60 FPS and disables vertical sync.
+lust-options-apply-hint = Changes take effect after you press Apply.

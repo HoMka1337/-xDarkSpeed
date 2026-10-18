@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleFugitive
+  name: Fugitive Role
+  components:
+  - type: MindRole
+    antagPrototype: Fugitive
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: FugitiveRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePlanetPrisoner
+  name: Planet Prisoner Role
+  components:
+  - type: MindRole
+    antagPrototype: PlanetPrisoner
+    exclusiveAntag: true
+    roleType: FreeAgent
+    subtype: role-subtype-prisoner
+  - type: PlanetPrisonerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLoneAbductor
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: LoneAbductorAntag
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: AbductorVictimRole
+  name: Abductor Victim
+  components:
+  - type: MindRole
+    antagPrototype: AbductorVictim
+    roleType: SoloAntagonist
+  - type: AbductorVictimRole
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCorporateAligned
+  name: Ghost Role (Corporate Aligned)
+  components:
+  - type: MindRole
+    roleType: CorporateAligned
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostTSFAligned
+  name: Ghost Role (TSF Aligned)
+  components:
+  - type: MindRole
+    roleType: TSFAligned
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSELFAgent
+  name: S.E.L.F Agent
+  components:
+  - type: MindRole
+    antagPrototype: SELFAgent
+    subtype: roles-antag-selfagent-name
+    exclusiveAntag: true
+  - type: SELFAgentRole

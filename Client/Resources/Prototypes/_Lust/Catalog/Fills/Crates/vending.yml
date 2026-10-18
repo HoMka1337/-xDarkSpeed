@@ -1,0 +1,25 @@
+﻿- type: entity
+  id: CrateVendingMachineRestockUnderwearFilled
+  parent: CratePlastic
+  name: Underwear restock crate
+  description: Contains restock boxes for an UnderwearMate dispenser.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockUnderwear
+          amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockKinkMateFilled
+  parent: CratePlastic
+  name: Kink mate restock crate
+  description: Contains restock boxes for a KinkMate dispenser.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockKinkMate
+          amount: 2

@@ -1,0 +1,54 @@
+- type: antag
+  id: MothershipCore
+  name: roles-antag-mothership-core-name
+  antagonist: true
+  setPreference: true
+  playTimeTracker: MothershipCore # Sunrise
+  objective: roles-antag-mothership-core-objective
+  requirements:
+  # Sunrise-start
+  - !type:DepartmentTimeRequirement
+    department: Silicon
+    time: 18000 # 5 hrs
+  # Sunrise-end
+  guides: [ Xenoborgs ]
+  storytellerStress: 5.0 # Sunrise-Edit
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: MothershipCore
+  prefRoles: [ MothershipCore ]
+  fallbackRoles: [ Xenoborg ] # Sunrise-Edit
+  spawnerPrototype: SpawnPointGhostRoleMothershipCore
+  mindRoles:
+  - MindRoleMothershipCore
+
+- type: antag
+  id: Xenoborg
+  name: roles-antag-xenoborg-name
+  antagonist: true
+  setPreference: true
+  playTimeTracker: Xenoborg # Sunrise
+  objective: roles-antag-xenoborg-objective
+  requirements:
+  # Sunrise-start
+  - !type:DepartmentTimeRequirement
+    department: Silicon
+    time: 18000 # 5 hrs
+  # Sunrise-end
+  guides: [ Xenoborgs ]
+  storytellerStress: 0.5 # Sunrise-Edit
+
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseXenoborg
+  prefRoles: [ Xenoborg ]
+  fallbackRoles: [ MothershipCore ] # Sunrise-Edit
+  spawnerPrototype: SpawnPointGhostRoleXenoborg
+  mindRoles:
+  - MindRoleXenoborg
+
+- type: antagSpecifier
+  parent: BaseXenoborg
+  id: Xenoborg

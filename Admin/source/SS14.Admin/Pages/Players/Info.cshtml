@@ -1,0 +1,251 @@
+﻿@page "{userId}"
+@using Content.Server.Database
+@using SS14.Admin.Helpers
+@using SS14.Admin.Pages.Tables
+@using System.Diagnostics
+@using Content.Shared.Database
+@model SS14.Admin.Pages.Players.Info
+
+@{
+    ViewData["Title"] = $"Игрок: {Model.Player.LastSeenUserName}";
+}
+
+<div class="container">
+    <h1>Информация об игроке @Model.Player.LastSeenUserName</h1>
+
+    <dl class="row">
+        <dt class="col-sm-2">Код аккаунта:</dt>
+        <dd class="col-sm-10 font-monospace">@Model.Player.UserId</dd>
+        <dt class="col-sm-2">Последний логин:</dt>
+        <dd class="col-sm-10">@Model.Player.LastSeenUserName</dd>
+        <dt class="col-sm-2">Первое подключение:</dt>
+        <dd class="col-sm-10">@Model.Player.FirstSeenTime.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+        <dt class="col-sm-2">Последнее подключение:</dt>
+        <dd class="col-sm-10">@Model.Player.LastSeenTime.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+        @if (User.IsInRole(Constants.PIIRole))
+        {
+            <dt class="col-sm-2">Последний сетевой адрес:</dt>
+            <dd class="col-sm-10 font-monospace">
+                <a asp-page="../Connections/Index" asp-route-search="@Model.Player.LastSeenAddress">
+                    @Model.Player.LastSeenAddress
+                </a>
+            </dd>
+            <dt class="col-sm-2">Последний код устройства:</dt>
+            <dd class="col-sm-10 font-monospace">
+                <a asp-page="../Connections/Index" asp-route-search="@BanHelper.FormatHwid(Model.Player.LastSeenHWId)">
+                    @BanHelper.FormatHwid(Model.Player.LastSeenHWId)
+                </a>
+            </dd>
+        }
+        <dt class="col-sm-2">В белом списке:</dt>
+        <dd class="col-sm-10 font-monospace">
+            @if (Model.Whitelisted)
+            {
+                <text><strong>✔️ да</strong> (<a asp-page="../Whitelist/RemoveWhitelist" asp-route-userId="@Model.Player.UserId">удалить</a>)</text>
+            }
+            else
+            {
+                <text><strong>❌ нет</strong> (<a asp-page="../Whitelist/AddWhitelist" asp-route-name="@Model.Player.UserId">добавить</a>)</text>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div class="container">
+    <h2>Наигранное время</h2>
+
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Счётчик</th>
+            <th>Наиграно (часы:минуты)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var tracker in Model.PlayTimes)
+        {
+            <tr>
+                <td class="font-weight-bold">@SS14.Admin.LustRussianUi.Name(tracker.Tracker)</td>
+                <td>@((int)tracker.TimeSpent.TotalHours):@tracker.TimeSpent.Minutes.ToString("D2")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h2>Профили персонажей</h2>
+
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Биологический пол</th>
+            <th>Гендер</th>
+            <th>Раса</th>
+            <th>Предпочитаемая должность</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var profile in Model.Profiles)
+        {
+            <tr>
+                <td class="font-weight-bold">@profile.CharacterName</td>
+                <td>@profile.Age</td>
+                <td>@SS14.Admin.LustRussianUi.Name(profile.Sex)</td>
+                <td>@SS14.Admin.LustRussianUi.Name(profile.Gender)</td>
+                <td>@SS14.Admin.LustRussianUi.Name(profile.Species)</td>
+                @{ var favJob = profile.Jobs.SingleOrDefault(e => e.Priority == DbJobPriority.High); }
+                <td>@(favJob == null ? "нет" : SS14.Admin.LustRussianUi.Name(favJob.JobName))</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="container-fluid">
+    <h2>Заметки</h2>
+
+    <span class="small">Всего: @Model.Remarks.Length</span>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th style="min-width: 110px">Тип</th>
+            <th>Сообщение</th>
+            <th>Раунд</th>
+            <th style="min-width: 100px">Серьёзность</th>
+            <th>Видимость / прочтение</th>
+            <th>Наиграно (часы:минуты)</th>
+            <th style="min-width: 130px">Окончание (всемирное время)</th>
+            <th>Создано (всемирное время)</th>
+            <th>Изменено (всемирное время)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var remark in Model.Remarks)
+        {
+            <tr>
+                <td>
+                    @switch (remark)
+                    {
+                        case AdminMessage:
+                            <span class="text-success"><i class="fas fa-envelope"></i> Сообщение</span>
+                            break;
+                        case AdminNote:
+                            <span class="text-info"><i class="fas fa-clipboard"></i> Заметка</span>
+                            break;
+                        case AdminWatchlist:
+                            <span class="text-warning"><i class="fas fa-eye"></i> Наблюдение</span>
+
+                            break;
+                        default:
+                            throw new UnreachableException();
+                    }
+                </td>
+                <td>@remark.Message</td>
+                <td>@remark.RoundId</td>
+                <td>
+                    @if (remark is AdminNote note)
+                    {
+                        switch (note.Severity)
+                        {
+                            case NoteSeverity.None:
+                                <span class="text-secondary"><i class="fas fa-check-circle"></i> Нет</span>
+                                break;
+                            case NoteSeverity.Minor:
+                                <span class="text-info"><i class="fas fa-minus-circle"></i> Низкая</span>
+                                break;
+                            case NoteSeverity.Medium:
+                                <span class="text-warning"><i class="fas fa-exclamation-circle"></i> Средняя</span>
+                                break;
+                            case NoteSeverity.High:
+                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Высокая</span>
+                                break;
+                            default:
+                                <text><i class="fas fa-question"></i> Неизвестно</text>
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-secondary">Нет данных</span>
+                    }
+                </td>
+                <td>
+                    @switch (remark)
+                    {
+                        case AdminMessage adminMessage:
+                            if (adminMessage.Seen)
+                            {
+                                <span class="text-success"><i class="fas fa-eye"></i> Прочитано</span>
+                            }
+                            else
+                            {
+                                <span class="text-secondary"><i class="fas fa-eye-slash"></i> Не прочитано</span>
+                            }
+
+                            break;
+                        case AdminNote adminNote:
+                            if (adminNote.Secret)
+                            {
+                                <span class="text-info"><i class="fas fa-eye-slash"></i> Скрытая</span>
+                            }
+                            else
+                            {
+                                <span class="text-success"><i class="fas fa-eye"></i> Видимая</span>
+                            }
+
+                            break;
+                        case AdminWatchlist:
+                            <span class="text-secondary">Нет данных</span>
+                            break;
+                        default:
+                            throw new UnreachableException();
+                    }
+                </td>
+                <td>@((int)remark.PlaytimeAtNote.TotalHours):@remark.PlaytimeAtNote.Minutes.ToString("D2")</td>
+                <td>
+                    @if (remark.ExpirationTime is { } expires)
+                    {
+                        var utc = expires.ToUniversalTime();
+                        var diff = utc - DateTime.UtcNow;
+                        @expires.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")<br/>
+                        <text>(через @diff.Days дн. @diff.Hours:@diff.Minutes)</text>
+                    }
+                    else
+                    {
+                        <text>Бессрочно</text>
+                    }
+                </td>
+                <td>
+                    @remark.CreatedAt.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")<br/>
+                    <span class="text-secondary">Автор: @(remark.CreatedBy?.LastSeenUserName ?? "неизвестно")</span>
+                </td>
+                <td>
+                    @if (remark.LastEditedAt > remark.CreatedAt)
+                    {
+                        @remark.LastEditedAt.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")<br/>
+                        <span class="text-secondary">Автор: @(remark.LastEditedBy?.LastSeenUserName ?? "неизвестно")</span>
+                    }
+                    else
+                    {
+                        <span class="text-secondary">Нет</span>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="container-fluid">
+    <h2>Блокировки</h2>
+    <partial name="Tables/BansTable" model="@(new BansTableModel(Model.GameSortState,Model.GameBanPagination, 0 ,false))"/>
+</div>
+
+<div class="container-fluid">
+    <h2>Блокировки ролей</h2>
+    <partial name="Tables/RoleBansTable" model="@(new RoleBansTableModel(Model.RoleSortState,Model.RoleBanPagination, 0, false))"/>
+</div>

@@ -1,0 +1,70 @@
+﻿using System.ComponentModel.DataAnnotations;
+using Content.Server.Database;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
+using SS14.Admin.Helpers;
+using WhitelistEntity = Content.Server.Database.Whitelist;
+
+namespace SS14.Admin.Pages.Whitelist;
+
+public class AddWhitelist : PageModel
+{
+    private readonly PostgresServerDbContext _dbContext;
+    private readonly PlayerLocator _playerLocator;
+
+    [BindProperty] public InputModel Input { get; set; } = new();
+
+    public sealed class InputModel
+    {
+        [Required(ErrorMessage = "Заполни это поле.")] public string? NameOrUid { get; set; }
+    }
+
+    public AddWhitelist(PostgresServerDbContext dbContext, PlayerLocator playerLocator)
+    {
+        _dbContext = dbContext;
+        _playerLocator = playerLocator;
+    }
+
+    public IActionResult OnGetAsync(string? name)
+    {
+        Input.NameOrUid ??= name;
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Input.NameOrUid))
+        {
+            TempData.SetStatusError("Укажи логин игрока.");
+            return Page();
+        }
+
+        // Resolve UID from input.
+        var uid = await _playerLocator.Resolve(Input.NameOrUid);
+        if (uid == null)
+        {
+            TempData.SetStatusError("Игрок не найден.");
+            return Page();
+        }
+
+        var whitelist = await _dbContext.Whitelist.SingleOrDefaultAsync(w => w.UserId == uid);
+        if (whitelist != null)
+        {
+            TempData.SetStatusError("Игрок уже есть в белом списке.");
+            return Page();
+        }
+
+        _dbContext.Add(new WhitelistEntity
+        {
+            UserId = uid.Value
+        });
+        await _dbContext.SaveChangesAsync();
+
+        TempData["HighlightNewWhitelist"] = uid;
+        TempData.SetStatusInformation("Игрок добавлен в белый список.");
+
+        return RedirectToPage("./Index");
+    }
+}

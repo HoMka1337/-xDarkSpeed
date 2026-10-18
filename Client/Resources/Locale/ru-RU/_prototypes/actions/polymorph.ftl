@@ -1,0 +1,16 @@
+ent-ActionRevertPolymorph = вернуться
+    .desc = Вернитесь в свою изначальную форму.
+ent-BaseActionPolymorph = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
+ent-ActionPolymorphWizardSpider = полиморф в паука
+    .desc = Превращает вас в паука.
+ent-ActionPolymorphWizardRod = форма жезла
+    .desc = ДЗЫНЬ!
+ent-ActionPolymorphJaunt = эфирная прогулка
+    .desc = Растворитесь в Эфирном плане чтобы быстро сбежать!
+ent-ActionPolymorphJauntII = эфирная прогулка II
+    .desc = Растворитесь в Эфирном плане, чтобы сбежать ещё быстрее!
+ent-ActionPolymorphJauntIII = эфирная прогулка III
+    .desc = Вы вообще осязаемы?
+ent-ActionPolymorph = { "" }
+    .desc = { "" }

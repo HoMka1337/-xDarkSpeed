@@ -1,0 +1,10 @@
+- type: entity
+  id: OrganDemonStomach
+  parent: OrganAnimalStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseStomachSmall
+    - SolutionSunriseRawProteinFood
+  - type: Stomach

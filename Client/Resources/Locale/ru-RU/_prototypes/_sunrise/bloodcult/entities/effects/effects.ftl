@@ -1,0 +1,10 @@
+ent-CultTileSpawnEffect = искрение
+    .desc = { "" }
+ent-CultTeleportInEffect = телепортация: появление
+    .desc = { "" }
+ent-CultTeleportOutEffect = телепортация: исчезновение
+    .desc = { "" }
+ent-CultWallGlow = свечение стены
+    .desc = { "" }
+ent-CultAirlockGlow = свечение шлюза
+    .desc = { "" }

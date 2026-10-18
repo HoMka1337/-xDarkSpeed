@@ -1,0 +1,19 @@
+﻿@using SS14.Admin.Helpers
+@{
+    var statusMsg = (string?) TempData[StatusMessageHelper.KeyMessage];
+    StatusMessageHelper.Type? statusType = null;
+    if (TempData.TryGetValue(StatusMessageHelper.KeyType, out var statusTypeUncast) && statusTypeUncast != null)
+        statusType = (StatusMessageHelper.Type)statusTypeUncast;
+}
+
+@if (!string.IsNullOrWhiteSpace(statusMsg))
+{
+    var statusMessageClass = statusType == StatusMessageHelper.Type.Error ? "danger" : "success";
+
+    <div class="container">
+        <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+            @statusMsg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}

@@ -1,0 +1,12 @@
+ent-WeaponSniperDragunov = dragunov
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleBauer127 = sR-127 Bauer bolt action rifle
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleType88AMR = type 88
+    .desc = The standard USSP anti-materiel rifle. Typically loaded with armor-piercing 15mm rounds in a 7-round magazine.
+ent-WeaponSniperGarand = m1 Garand
+    .desc = A classic .308 semi-automatic rifle fed by eight-round en-bloc clips. An empty clip ejects with a distinctive ping; a fresh one cannot be inserted until the current clip is empty.
+ent-WeaponSniperRepeater = n2524 Repeater
+    .desc = A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
+ent-WeaponSniperMosinLubed = kardashev-Mosin
+    .desc = A relic Kardashev-Mosin rifle that has survived countless wars, and it's still deadly. Freshly unsealed, heavily greased — ready for the next war! Uses .30 caliber rounds.

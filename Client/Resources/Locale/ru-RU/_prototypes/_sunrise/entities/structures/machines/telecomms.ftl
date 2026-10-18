@@ -1,0 +1,13 @@
+ent-TelecomServerFilledLaw = { ent-TelecomServer }
+    .suffix = Юридический
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerFilledBlueShield = { ent-TelecomServer }
+    .suffix = Синий щит
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerFilledUSSP = { ent-TelecomServer }
+    .suffix = СССП
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT2 = продвинутый телекоммуникационный сервер
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT3 = экспериментальный телекоммуникационный сервер
+    .desc = { ent-TelecomServer.desc }

@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconBlueShield
+  suffix: Blue Shield
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-blueshield
+    color: "#00bfff"

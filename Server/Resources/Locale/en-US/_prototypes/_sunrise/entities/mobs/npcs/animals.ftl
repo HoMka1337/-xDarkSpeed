@@ -1,0 +1,15 @@
+ent-MobBaseInferiorVulpkanin = inferior vulpkanin
+    .desc = { ent-MobBaseAncestor.desc }
+ent-MobInferiorVulpkanin = inferior vulpkanin
+    .desc = { ent-MobBaseInferiorVulpkanin.desc }
+ent-MobBaseSyndicateInferiorVulpkanin = { ent-MobBaseInferiorVulpkanin }
+    .suffix = Syndicate base
+    .desc = { ent-MobBaseInferiorVulpkanin.desc }
+ent-MobInferiorVulpkaninSyndicateAgent = { ent-MobBaseSyndicateInferiorVulpkanin }
+    .suffix = Syndicate agent
+    .desc = { ent-MobBaseSyndicateInferiorVulpkanin.desc }
+ent-MobInferiorVulpkaninSyndicateAgentNukeops = { ent-MobBaseSyndicateInferiorVulpkanin }
+    .suffix = NukeOps
+    .desc = { ent-MobBaseSyndicateInferiorVulpkanin.desc }
+ent-MobSaw = saw
+    .desc = Mother.

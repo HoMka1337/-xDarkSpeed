@@ -1,0 +1,44 @@
+@page
+@model SS14.Admin.Pages.Donate.IndexModel
+@using SS14.Admin
+@{ Layout = "_DonationLayout"; ViewData["Title"] = "Донат и подписки"; }
+<section class="support-width catalog" id="levels">
+    <div class="catalog-heading"><div><p class="eyebrow">ПОДДЕРЖКА GRIBLE STATION</p><h1>Выбери свой уровень</h1></div>
+        <form method="get" class="support-currency"><input type="hidden" name="Period" value="@Model.Period" /><label for="currency">Валюта</label><select id="currency" name="Currency" onchange="this.form.requestSubmit()">@foreach (var currency in LustSponsorStore.Currencies) { <option value="@currency" selected="@(currency == Model.Currency)">@LustSponsorStore.CurrencyName(currency) · @LustSponsorStore.Symbol(currency)</option> }</select><noscript><button type="submit">Показать</button></noscript></form>
+    </div>
+    <nav class="period-switch" aria-label="Срок подписки">
+        @foreach (var period in LustSponsorStore.Periods)
+        { <a asp-page="./Index" asp-route-currency="@Model.Currency" asp-route-period="@period" class="@(period == Model.Period ? "selected" : "")" aria-current="@(period == Model.Period ? "true" : null)">@LustSponsorStore.PeriodName(period) @if (period != "month") { <span class="period-discount"><span aria-hidden="true">🔥</span> −@(period == "quarter" ? 20 : 30)%</span> }</a> }
+    </nav>
+    <div class="support-tier-grid">
+    @foreach (var tier in Model.Shop.Tiers)
+    {
+        var quote = LustSponsorStore.Quote(tier, Model.Currency, Model.Period);
+        <article class="support-tier tier-@Model.Banner(tier.Rank)" style="--tier-color:@tier.OocColor">
+            <img class="tier-art" src="~/images/donate/@(Model.Banner(tier.Rank)).webp" alt="" width="640" height="360" loading="@(tier.Rank <= 3 ? "eager" : "lazy")" />
+            <div class="tier-body"><h2>@tier.Name</h2><div class="support-price"><strong>@LustSponsorStore.Amount(quote.Monthly) @LustSponsorStore.Symbol(Model.Currency)</strong><span>/мес</span></div>
+                <p class="tier-billing">@if (quote.Discount > 0) { <del>@LustSponsorStore.Amount(tier.Prices[Model.Currency]) @LustSponsorStore.Symbol(Model.Currency)/мес</del><span>@LustSponsorStore.Amount(quote.Total) @LustSponsorStore.Symbol(Model.Currency) за весь срок</span> } else { <span>Оплата за @LustSponsorStore.Count(quote.Tier.Days, "день", "дня", "дней")</span> }</p>
+                <ul class="support-perks">
+                    <li><span class="perk-icon" aria-hidden="true">💬</span><span><strong class="tier-accent">@tier.Name</strong> — цвет и подпись во внеигровом чате.</span></li>
+                    <li><span class="perk-icon" aria-hidden="true">👻</span><span>@if (tier.GhostThemes.Length == 1 && tier.GhostThemes[0] == "Purple") { <text><strong class="tier-accent">Фиолетовый</strong> облик призрака.</text> } else { <text>На выбор <strong>@LustSponsorStore.Count(tier.GhostThemes.Length, "облик призрака", "облика призрака", "обликов призрака")</strong>.</text> }</span></li>
+                    <li><span class="perk-icon" aria-hidden="true">🐾</span><span>На выбор <strong>@LustSponsorStore.Count(tier.Pets.Length, "питомец", "питомца", "питомцев")</strong> в лобби.</span></li>
+                    <li class="perk-featured"><span class="perk-icon" aria-hidden="true">✨</span><span>Дополнительные места для персонажей: <strong class="tier-accent">+@tier.ExtraSlots</strong>.</span></li>
+                    <li><span class="perk-icon" aria-hidden="true">📝</span><span>Описание персонажа до <strong>@tier.FlavorLength.ToString("N0")</strong> символов.</span></li>
+                    @if (Model.IncludesPreviousCosmetics(tier)) { <li><span class="perk-icon" aria-hidden="true">🎁</span><span>Облики и питомцы предыдущих уровней.</span></li> }
+                </ul>
+                <details class="support-tier-details"><summary>Все облики и питомцы</summary><h3>Призраки</h3><div class="support-chips">@foreach (var ghost in tier.GhostThemes) { <span>@Model.ItemName("ghost", ghost)</span> }</div><h3>Питомцы</h3><div class="support-chips">@foreach (var pet in tier.Pets) { <span>@Model.ItemName("pet", pet)</span> }</div></details>
+                <a class="support-tier-button" asp-page="./Checkout" asp-route-tier="@tier.Key" asp-route-currency="@Model.Currency" asp-route-period="@Model.Period" aria-label="Подписаться: @tier.Name, @LustSponsorStore.PeriodName(Model.Period)">Подписаться</a>
+            </div>
+        </article>
+    }
+    </div>
+    <p class="catalog-note">Стоимость за месяц при оплате выбранного срока. Полная сумма указана в карточке и заявке. Автоматических списаний нет.</p>
+</section>
+<section class="support-width support-how" id="how"><div><p class="eyebrow">КАК ПОЛУЧИТЬ ПРИВИЛЕГИИ</p><h2>Три шага до новой смены</h2></div><ol><li><span>01</span><div><h3>Выбери подписку</h3><p>Укажи срок, валюту и идентификатор игрового аккаунта.</p></div></li><li><span>02</span><div><h3>Сохрани личную заявку</h3><p>Следуй инструкции по оплате. Администратор проверит поступление вручную.</p></div></li><li><span>03</span><div><h3>Переподключись к игре</h3><p>После подтверждения откроются твои привилегии. Питомец появится со следующим персонажем.</p></div></li></ol></section>
+<section class="support-width support-faq" id="faq"><div><p class="eyebrow">ПОЛЕЗНО ЗНАТЬ</p><h2>Вопросы о подписке</h2></div><div>
+    <details><summary>Как узнать идентификатор аккаунта?</summary><p>Идентификатор аккаунта (UUID) — уникальный код из букв, цифр и дефисов. Администратор видит его в разделе «Игроки» панели GS14. Нужен именно аккаунт, с которым ты играешь на сервере; у локального клиента он может отличаться от аккаунта сайта.</p></details>
+    <details><summary>Что означают три месяца и год?</summary><p>При обычном месячном сроке 30 дней подписка на три месяца действует 90 дней, годовая — 365 дней. Скидка применяется ко всему выбранному сроку. Точная длительность и итоговая сумма видны перед созданием заявки.</p></details>
+    <details><summary>Как выбрать облик и питомца?</summary><p>Облик выбирается действием «Смена скина призрака», питомец — в лобби. После подтверждения оплаты переподключись к серверу, чтобы обновились меню и места для персонажей.</p></details>
+    <details><summary>Что будет при продлении или смене уровня?</summary><p>Повторная покупка того же уровня добавляет срок после окончания действующей подписки. Другой уровень активируется сразу. При пересечении подписок облики и питомцы объединяются, остальные лимиты берутся по максимуму.</p></details>
+    <details><summary>Что произойдёт после окончания срока?</summary><p>Привилегии подписки станут недоступны. Профили персонажей сохранятся, а дополнительные места снова откроются после продления. Отдельные бессрочные выдачи продолжают работать.</p></details>
+</div></section>

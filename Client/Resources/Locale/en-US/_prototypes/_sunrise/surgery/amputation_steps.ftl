@@ -1,0 +1,12 @@
+ent-SurgeryAmputationStep = saw Through Limb
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepExposeSkull = expose Skull
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepLigateVessels = ligate Vessels
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepSawSkull = saw Skull
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepInciseCartilage = incise Cartilage
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepHeadFinalizeSeparation = finalize Separation
+    .desc = { ent-SurgeryStepSawSkull.desc }

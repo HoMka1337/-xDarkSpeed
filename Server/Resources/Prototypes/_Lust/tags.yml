@@ -1,0 +1,13 @@
+﻿- type: Tag
+  id: StunSword
+
+# HL2
+- type: Tag
+  id: CartridgeAR2
+
+- type: Tag
+  id: MagazineAR2
+
+# Guns
+#- type: Tag
+#  id: MagazineMP5

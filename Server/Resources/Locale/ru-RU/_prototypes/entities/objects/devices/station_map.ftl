@@ -1,0 +1,17 @@
+ent-BaseHandheldStationMap = карта станции
+    .desc = Отображает схему текущей станции.
+ent-HandheldStationMap = { ent-BaseHandheldStationMap }
+    .suffix = Ручной, Заряжен
+    .desc = { ent-BaseHandheldStationMap.desc }
+ent-HandheldStationMapEmpty = { ent-HandheldStationMap }
+    .suffix = Ручной, Пустой
+    .desc = { ent-HandheldStationMap.desc }
+ent-HandheldStationMapUnpowered = { ent-BaseHandheldStationMap }
+    .suffix = Ручной, Не требует питания
+    .desc = { ent-BaseHandheldStationMap.desc }
+ent-HandheldStationMapStatic = { ent-BaseHandheldStationMap }
+    .suffix = Ручной, Работает вне станции
+    .desc = { ent-BaseHandheldStationMap.desc }
+ent-HandheldStationMapNukeops = карта целевой станции
+    .suffix = Ручной, Ядерные оперативники
+    .desc = Отображает схему целевой станции.

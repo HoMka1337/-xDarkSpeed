@@ -1,0 +1,26 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Обзор";
+}
+<div class="gs-page-heading"><div><span class="gs-eyebrow">GRIBLE STATION</span><h1>Панель администратора</h1><p class="gs-muted">Игроки, история подключений и инструменты управления сервером.</p></div><span class="gs-label">GS14 ADMIN</span></div>
+@if (User.Identity?.IsAuthenticated != true)
+{
+    <div class="gs-signin-notice"><i class="fas fa-lock" aria-hidden="true"></i><div><strong>Войдите в аккаунт администратора</strong><p>Доступ к данным и действиям определяется правами вашего аккаунта.</p></div><a class="btn btn-primary" asp-controller="Login" asp-action="Index">Войти в панель</a></div>
+}
+<h2 class="gs-section-title">Разделы панели</h2>
+<div class="gs-dashboard-grid">
+    <a class="gs-dashboard-card" asp-page="/Players/Index"><span class="gs-card-icon"><i class="fas fa-users" aria-hidden="true"></i></span><h3>Игроки</h3><p>Аккаунты, история и сведения об игроках.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/Bans/Index"><span class="gs-card-icon"><i class="fas fa-ban" aria-hidden="true"></i></span><h3>Блокировки</h3><p>Просмотр и управление блокировками игроков.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/RoleBans/Index"><span class="gs-card-icon"><i class="fas fa-user-lock" aria-hidden="true"></i></span><h3>Блокировки ролей</h3><p>Ограничения доступа к игровым должностям.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/Connections/Index"><span class="gs-card-icon"><i class="fas fa-network-wired" aria-hidden="true"></i></span><h3>Подключения</h3><p>История входов игроков на сервер.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/Logs/Index"><span class="gs-card-icon"><i class="fas fa-list-alt" aria-hidden="true"></i></span><h3>Журнал</h3><p>Поиск и просмотр игровых событий.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/Characters/Index"><span class="gs-card-icon"><i class="fas fa-id-card" aria-hidden="true"></i></span><h3>Персонажи</h3><p>Сохранённые персонажи и их профили.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    <a class="gs-dashboard-card" asp-page="/Whitelist/Index"><span class="gs-card-icon"><i class="fas fa-clipboard-check" aria-hidden="true"></i></span><h3>Белый список</h3><p>Управление допуском аккаунтов на сервер.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    @if (User.IsInRole("PERMISSIONS"))
+    {
+        <a class="gs-dashboard-card" asp-page="/Sponsors/Index"><span class="gs-card-icon"><i class="fas fa-star" aria-hidden="true"></i></span><h3>Спонсоры</h3><p>Заявки на донат, подтверждение оплаты, уровни и подписки.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+        <a class="gs-dashboard-card" asp-page="/Rewards/Index"><span class="gs-card-icon"><i class="fas fa-gift" aria-hidden="true"></i></span><h3>Выдачи</h3><p>Доступ к скинам призрака и питомцам, отзыв и история выдач.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+        <a class="gs-dashboard-card" asp-page="/Administrators/Index"><span class="gs-card-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></span><h3>Администраторы</h3><p>Выдача и отзыв административных прав.</p><span class="gs-card-link">Открыть раздел <span aria-hidden="true">→</span></span></a>
+    }
+</div>

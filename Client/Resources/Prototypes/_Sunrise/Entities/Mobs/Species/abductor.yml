@@ -1,0 +1,94 @@
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceAbductor
+  name: abductor appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: TorsoAbductor
+      Head: HeadAbductor
+      ArmLeft: LeftArmAbductor
+      ArmRight: RightArmAbductor
+      HandRight: RightHandAbductor
+      HandLeft: LeftHandAbductor
+      LegLeft: LeftLegAbductor
+      LegRight: RightLegAbductor
+      FootLeft: LeftFootAbductor
+      FootRight: RightFootAbductor
+      Brain: OrganAbductorBrain
+      Eyes: OrganAbductorEyes
+      Heart: OrganAbductorHeart
+      Lungs: OrganAbductorLungs
+      Stomach: OrganAbductorStomach
+      Liver: OrganAbductorLiver
+      Kidneys: OrganAbductorKidneys
+
+- type: entity
+  save: false
+  name: Urist McAbductor
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - AppearanceAbductor
+  - BaseSpeciesMob
+  id: BaseMobAbductor
+  abstract: true
+  components:
+  - type: Muted
+  - type: HumanoidProfile
+    species: Abductor
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
+  - type: Icon
+    sprite: _Sunrise/Abductor/Mobs/Species/Abductor/parts.rsi
+    state: full
+  - type: Fingerprint
+  - type: Blindable
+  - type: FireVisuals
+    alternateState: Standing
+  - type: Damageable
+  - type: Injurable
+    damageContainer: Biological
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#878787"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damage:
+      types:
+        Heat: -0.14
+        Blunt: -0.05
+        Slash: -0.05
+        Piercing: -0.04
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: AbductorBlood
+        Quantity: 300
+  - type: CollectiveMind
+    minds:
+    - Abductor
+  #Lust start
+  - type: Scent
+    personalScentProfile: LustAbductor
+  #Lust end
+
+- type: entity
+  parent: AppearanceAbductor
+  id: MobAbductorDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidProfile
+    species: Abductor
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers

@@ -1,0 +1,1131 @@
+- type: entity
+  id: BaseWeaponAutoPowerCell
+  parent: [BaseItem, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  abstract: true
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 50
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        startingItem: PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellHigh
+            - PowerCellSmall
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+
+- type: entity
+  name: LNT620 "Spark"
+  parent: [ BaseWeaponAutoPowerCell, BaseSecurityContraband ]
+  id: WeaponLaserLNT620
+  description: Automatic Laser NanoTrasen LNT620.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    fireRate: 6
+    minAngle: 1
+    maxAngle: 15
+    angleIncrease: 0.75
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    bigTrigger: true # Sunrise-Edit
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 0.9
+    dualWieldFireRatePenalty: 0.35
+    dualWieldRecoilPenalty: 0.9
+
+- type: entity
+  parent: WeaponLaserLNT620
+  id: SunriseWeaponLaserLNT620Empty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+          - PowerCell
+          - PowerCellHigh
+          - PowerCellSmall
+
+- type: entity
+  name: battery-powered laser carbine
+  parent: [ BaseWeaponPowerCell, BaseGunWieldable, BaseSecurityContraband ]
+  id: SunriseWeaponLaserCarbineBattery
+  description: A battery-powered version of the standard NanoTrasen Security laser carbine.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 3
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: StaticPrice
+    price: 420
+  - type: Tag
+    tags:
+    - LaserWeapon
+
+- type: entity
+  name: miniature energy gun
+  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  id: WeaponMiniEnergyGun
+  description: An energy gun capable of switching between lethal and debilitating lasers. Its built-in two-charge contact flash can blind an opponent.
+  components:
+  - type: Item
+    storedOffset: 0,-5
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 100
+      pacifismAllowedMode: true
+    - proto: BulletLaserWindowPiercingMagnum
+      fireCost: 175
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  - type: Flash
+    flashOnUse: false
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 60
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    angle: 10
+    damage:
+      types:
+        Blunt: 0
+  - type: AltFireMelee
+    attackType: Light
+  - type: UseDelay
+    delay: 1
+  - type: UseDelayOnMeleeHit
+  - type: Appearance
+
+- type: entity
+  name: Judge energy pistol
+  parent: BaseWeaponBatterySmall
+  id: WeaponEnergyGunPistol
+  description: A military grade sidearm, used by many militia forces throughout the local sector.
+  components:
+  - type: Item
+    size: Small
+    heldPrefix: disabler
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,-5
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pdw9_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
+      shader: unshaded
+    - state: mag-unshaded-6
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pdw9_pistol.rsi
+  - type: Gun
+    bigTrigger: true
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 75
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 75
+      name: energy-gun-disable
+      visualState: disable
+      heldPrefix: disabler
+      pacifismAllowedMode: true
+    - proto: BulletTaser
+      fireCost: 150
+      #magState: taser
+      visualState: taser
+      heldPrefix: taser
+      pacifismAllowedMode: true
+    - proto: BulletLaserWindowPiercingMagnum
+      fireCost: 100
+      #magState: lethal
+      visualState: lethal
+      heldPrefix: lethal
+  - type: Appearance
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: true
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 750
+
+# Sunrise Colonial Marines
+
+- type: entity
+  name: EarthGov laser pistol
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  id: WeaponEarthGovLaserPistol
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/eg_p.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: EarthGov laser rifle
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  id: WeaponEarthGovLaserRifle
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_R/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: BatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: EarthGov laser carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  id: WeaponEarthGovLaserCarbine
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_C.ogg
+      params:
+        volume: -1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: EarthGov laser machine gun
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  id: WeaponEarthGovLaserMG
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
+  - type: Gun
+    minAngle: 24
+    maxAngle: 34
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      collection: EearthGovernmentMachineGunShot
+      params:
+        volume: -1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: Battery
+    maxCharge: 8000
+    startingCharge: 8000
+  - type: BatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: EarthGov Experemental X-Ray
+  parent: [BaseWeaponBattery, BaseGunPulseSound, BaseTSFContraband] # Lust edit :: BaseTSFContraband
+  id: WeaponEarthGovXRay
+  suffix: SUNRISE14CM
+  description: Earth Government Experemental x-ray weapon, it looks like it emits radiation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EGE_XR/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_XR.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+  - type: BatteryAmmoProvider
+    proto: CartridgeXrayBeam
+    fireCost: 100
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: EarthGov heavy laser rifle
+  parent: [BaseWeaponBattery, BaseGunPulseSound, BaseSecurityContraband] # Lust edit :: BaseSecurityContraband
+  id: WeaponEarthGovLaserSniper
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_Sniper/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -93
+    maxAngle: -94
+  - type: Gun
+    minAngle: 94
+    maxAngle: 95
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Sniper.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 100
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 6
+    pvsIncrease: 0.6
+
+- type: entity
+  name: S-13 «Black mamba»
+  parent: [ BaseWeaponBattery, BaseSyndicateContraband ] # Lust edit :: BaseSyndicateContraband
+  id: WeaponSyndieLaserGun
+  description: A modernised Lecter, converted to a plasma energy module.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
+  - type: Gun
+    minAngle: 30
+    maxAngle: 50
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1.5
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: red_mamba
+      params:
+        volume: 5
+    availableModes:
+    - FullAuto
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 50
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -28
+    maxAngle: -45
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: EmpImmune
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.4
+  - type: StaticPrice
+    price: 3500
+
+- type: entity
+  name: SAM-300
+  parent: [ BaseWeaponBattery, BaseSyndicateContraband ] # Lust edit :: BaseSyndicateContraband
+  id: WeaponSyndieLaserPistol
+  description: The Syndicate's laser pistol, developed from the NT Captain's pistol.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
+  - type: Gun
+    minAngle: 5
+    maxAngle: 9
+    angleIncrease: 2
+    angleDecay: 6
+    fireRate: 4
+    selectedMode: SemiAuto
+    soundGunshot:
+      collection: plasma_pistol
+    availableModes:
+      - SemiAuto
+      - FullAuto
+  - type: BatteryAmmoProvider
+    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 50
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+    autoRechargePauseTime: 10
+  - type: StaticPrice
+    price: 7500
+
+- type: entity
+  name: UVL-21 «Vivern»
+  parent: [BaseWeaponBattery, BaseGunPulseSound, BaseSyndicateContraband] # Lust edit :: BaseSyndicateContraband
+  id: WeaponLaserMinigun
+  description: A heavy weapon of mass destruction based on the minigun.
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    size: Huge
+    shape:
+    - 0,0,5,2
+  - type: Gun
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1
+    angleDecay: 10
+    fireRate: 8
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -1
+    availableModes:
+    - FullAuto
+  - type: BatteryAmmoProvider
+    proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 20
+  - type: MultiHandedItem
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: EmpImmune
+  - type: StaticPrice
+    price: 9000
+
+- type: entity
+  parent: [BaseWeaponBatterySmall, BaseHighlyIllegalContraband] # Lust edit :: BaseHighlyIllegalContraband
+  id: WeaponAlien
+  name: alien pistol
+  components:
+  - type: RestrictByUserTag
+    contains:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Objects/Weapons/Guns/Battery/alien.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 50
+      name: energy-gun-disable
+      #state: base
+    - proto: BulletLaserWindowPiercingMagnum
+      fireCost: 50
+      name: energy-gun-lethal
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+###### PULSE WEAPONS ######
+
+- type: entity
+  name: pulse pistol
+  parent: [BaseWeaponBatterySmall, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulsePistol
+  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    storedOffset: -2,-5
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 1000
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 2500
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+
+- type: entity
+  name: pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulseCarbine
+  description: A high tech energy carbine favoured by the NT-ERT operatives.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Large
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 2500
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 60000
+    startingCharge: 60000
+
+- type: entity
+  name: heavy pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponSniperPulseCarbine
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 2500
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 80000
+    startingCharge: 80000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 6
+    pvsIncrease: 0.6
+
+- type: entity
+  name: pulse rifle
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulseRifle
+  description: A weapon that is almost as infamous as its users.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 2500
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 400000
+    startingCharge: 400000
+
+# XenoBorgs
+- type: entity
+  name: xenoborg turbo-laser
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserMinigun
+  description: A big gun for big "Refrigerators". Fires so fast it overheats after a short burst, but at least you’ll definitely hit your target.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    minAngle: 6
+    maxAngle: 15
+    angleIncrease: 1
+    angleDecay: 5
+    fireRate: 12
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -2
+    availableModes:
+    - FullAuto
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 33
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1
+    autoRechargeRate: 250
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  name: xenoborg X-ray cannon
+  parent: [WeaponXrayCannon, BaseXenoborgContraband]
+  id: XenoborgXrayGun
+  description: Weapon that uses concentrated x-ray energy against its target.
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+
+- type: entity
+  name: xenoborg temperature gun
+  parent: [WeaponTemperatureGun, BaseXenoborgContraband]
+  id: XenoborgTemperatureGun
+  description: An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+
+- type: entity
+  name: laser pistol
+  parent: BaseWeaponBatterySmall
+  id: WeaponSunriseLaserPistol
+  description: A compact laser sidearm with an integrated battery.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Sidearm
+    - LaserWeapon
+
+- type: entity
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponPilotLasgun
+  name: pilot lasgun
+  description: The Imperium's main argument in disputes with heretics and cultists. Cauterizes wounds on hit, saving a battle brother's bandages.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun_world.rsi
+    scale: 0.8, 0.8
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Gun
+    minAngle: 8
+    maxAngle: 12
+    fireRate: 2
+    selectedMode: SemiAuto
+    shotsPerBurst: 2
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      collection: plasma_pistol
+  - type: GunWieldBonus
+    minAngle: -4
+    maxAngle: -6
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 20
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: RedLaser
+      fireCost: 20
+      name: lasgun-fire-mode-low
+    - proto: RedMediumLaser
+      fireCost: 50
+      name: lasgun-fire-mode-standard
+    - proto: RedLaserBeam
+      fireCost: 100
+      name: lasgun-fire-mode-overcharge
+  - type: Appearance
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Piercing: 12
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: StaticPrice
+    price: 900
+  - type: Tag
+    tags:
+    - LaserWeapon

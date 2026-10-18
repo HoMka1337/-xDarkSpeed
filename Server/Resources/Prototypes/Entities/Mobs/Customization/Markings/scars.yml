@@ -1,0 +1,97 @@
+﻿- type: marking
+  id: ScarEyeRight
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Slime] # Sunrise edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_right
+
+- type: marking
+  id: ScarEyeLeft
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Slime] # Sunrise edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_left
+
+- type: marking
+  id: ScarTopSurgeryShort
+  bodyPart: Chest
+  groupWhitelist: [Human, Reptilian, Moth, Arachnid, Diona, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sexRestriction: [Male]
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_top_surgery_short
+
+- type: marking
+  id: ScarTopSurgeryLong
+  bodyPart: Chest
+  groupWhitelist: [Human, Reptilian, Moth, Arachnid, Diona, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sexRestriction: [Male]
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_top_surgery_long
+
+- type: marking
+  id: ScarChest
+  bodyPart: Chest
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Moth, Arachnid, Diona, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_chest
+
+- type: marking
+  id: ScarNeck
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_neck
+
+- type: marking
+  id: ScarChestBullets
+  bodyPart: Chest
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Moth, Arachnid, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_chest_bullets
+
+- type: marking
+  id: ScarStomachBullets
+  bodyPart: Chest
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Moth, Arachnid, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_stomach_bullets
+
+- type: marking
+  id: ScarFace1
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Moth, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_face_1
+
+- type: marking
+  id: ScarFace2
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Moth, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_face_2
+
+- type: marking
+  id: ScarEyeRightSmall
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_right_small
+
+- type: marking
+  id: ScarEyeLeftSmall
+  bodyPart: Head
+  groupWhitelist: [Human, Dwarf, Reptilian, Slime, Demon, Felinid, Swine, Milira] # Sunrise-edit
+  sprites:
+  - sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_left_small

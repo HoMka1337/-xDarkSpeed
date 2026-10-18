@@ -1,0 +1,11 @@
+action-speech-spell-forcewall = TARCOL MINTI ZHERI
+action-speech-spell-knock = АУЛИ ОКСИН ФИЕРА
+action-speech-spell-smite = EI NATH!
+action-speech-spell-summon-magicarp = AIE KHUSE EU
+action-speech-spell-fireball = ONI'SOMA!
+action-speech-spell-summon-guns = ЙОР'НИ ВЕС-КОРФА
+action-speech-spell-summon-magic = РИГОИН ФЕМА-ВЕРЕКО
+action-speech-spell-mind-swap = ДЖИН'Ю КАПАН!
+action-speech-spell-cluwne = !КНОХ
+action-speech-spell-slip = СЛИ ПАРРИ!
+action-speech-spell-charge = ДИ'РИ СЕЛ!

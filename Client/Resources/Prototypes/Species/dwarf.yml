@@ -1,0 +1,22 @@
+- type: species
+  id: Dwarf
+  name: species-name-dwarf
+  roundStart: true
+  prototype: MobDwarf
+  bodyTypes: # Sunrise-Edit
+  - HumanNormal
+  - HumanSlimFemale
+  - HumanSlimMale
+  - HumanGigaFemale
+  - HumanGigaMale
+  - HumanFatFemale
+  - HumanFatMale
+  - HumanDistrofikFemale
+  - HumanDistrofikMale
+  dollPrototype: AppearanceDwarf
+  skinColoration: HumanToned
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
+  sexes: [Male, Female, Futanari] # Lust-Edit

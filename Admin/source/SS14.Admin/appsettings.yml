@@ -1,0 +1,24 @@
+Serilog:
+  Using: [ "Serilog.Sinks.Console" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      SS14: Debug
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: Warning
+
+  WriteTo:
+    - Name: Console
+      Args:
+        Theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleThemes::Code, Serilog.Sinks.Console
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+  Enrich: [ "FromLogContext" ]
+
+ForwardProxies:
+  - 127.0.0.1
+  # - 172.16.0.0/12  # Supports CIDR notation for subnets (Docker)
+
+AuthServer: "https://central.spacestation14.io/auth"
+AllowedHosts: "*"

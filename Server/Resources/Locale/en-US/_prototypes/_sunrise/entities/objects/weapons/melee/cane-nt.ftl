@@ -1,0 +1,3 @@
+ent-CaneNT = fancy cane
+    .desc = A cane with special engraving on it. It seems well suited for fending off assailants...
+    .suffix = НЕ МАППИТЬ

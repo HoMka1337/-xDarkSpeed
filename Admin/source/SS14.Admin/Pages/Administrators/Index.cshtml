@@ -1,0 +1,38 @@
+@page
+@model SS14.Admin.Pages.Administrators.IndexModel
+@{ ViewData["Title"] = "Администраторы Grible Station"; }
+<h1>Администраторы Grible Station</h1>
+@if (Model.Notice != null) { <div class="alert alert-info">@Model.Notice</div> }
+<p>Права привязаны к UUID аккаунта SS14. Ник персонажа для этого не подходит.</p>
+<form method="post" asp-page-handler="Grant" class="card card-body mb-4">
+    <label asp-for="UserId">UUID аккаунта</label>
+    <input asp-for="UserId" required class="form-control mb-2" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
+    <label asp-for="Title">Звание</label>
+    <input asp-for="Title" maxlength="80" required class="form-control mb-3" />
+    <button type="submit" class="btn btn-primary">Выдать все права, включая управление сервером и администраторами</button>
+</form>
+<h2>Игроки, заходившие на сервер</h2>
+<p>Если UUID аккаунта в локальном клиенте отличается от аккаунта сайта, выбери здесь своего игрока.</p>
+<table class="table"><thead><tr><th>Логин</th><th>UUID на сервере</th><th></th></tr></thead><tbody>
+@foreach (var player in Model.Players)
+{
+    <tr><td>@player.Name</td><td>@player.UserId</td><td>
+        <form method="post" asp-page-handler="Grant">
+            <input type="hidden" name="UserId" value="@player.UserId" />
+            <input type="hidden" name="Title" value="Администратор" />
+            <button class="btn btn-outline-primary" type="submit">Выдать все права</button>
+        </form>
+    </td></tr>
+}
+</tbody></table>
+<h2>Текущие администраторы</h2>
+<table class="table">
+    <thead><tr><th>UUID</th><th>Звание</th><th>Доступ</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var admin in Model.Admins)
+    {
+        <tr><td>@admin.UserId</td><td>@admin.Title</td><td>@(admin.Suspended ? "Приостановлен" : "Активен")</td>
+            <td><form method="post" asp-page-handler="Revoke"><input type="hidden" name="targetId" value="@admin.UserId" /><button class="btn btn-outline-danger" type="submit">Отозвать права</button></form></td></tr>
+    }
+    </tbody>
+</table>

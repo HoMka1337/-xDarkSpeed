@@ -1,0 +1,199 @@
+# region Base
+- type: entity
+  parent: BaseBlueprint
+  id: BaseBlueprintSunrise
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    layers:
+      - state: icon-base
+        color: "#7da0ba"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    size: Normal
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7da0ba"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7da0ba"
+      - state: inhand-right-text
+  - type: Tag # defaults to autolathe-insertable
+    tags:
+    - BlueprintAutolathe
+    - Document
+    - Paper
+
+- type: entity
+  parent: [BaseItem, DiskSounds] # Sunrise
+  id: TechnologyDiskBlueprint
+  name: technology disk
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      map: [ "base" ]
+    - state: datadisk_label
+    - state: datadisk_t2_marks
+      shader: unshaded
+      map: [ "t2_marks" ]
+      visible: false
+    - state: datadisk_t2_border
+      map: [ "t2_border" ]
+      visible: false
+    - state: datadisk_t3_marks
+      map: [ "t3_marks" ]
+      shader: unshaded
+      visible: false
+    - state: datadisk_t3_border
+      map: [ "t3_border" ]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TechDiskVisuals.Discipline:
+        base:
+          Industrial: { color: "#eeac34" }
+          Arsenal: { color: "#dc373b" }
+          Experimental: { color: "#9a6ef0" }
+          CivilianServices: { color: "#7ecd48" }
+
+      enum.TechDiskVisuals.Tier:
+        t2_marks:
+          2: { visible: true }
+        t2_border:
+          2: { visible: true }
+        t3_marks:
+          3: { visible: true }
+        t3_border:
+          3: { visible: true }
+  - type: Item
+    size: Tiny
+  - type: TechnologyDisk
+  - type: Tag # defaults to autolathe-insertable
+    tags:
+    - BlueprintAutolathe
+
+- type: entity
+  parent: BaseBlueprint
+  id: BaseBlueprintSecurity
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    layers:
+      - state: icon-base
+        color: "#d21a1a"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: FaxableObject
+  - type: Item
+    size: Normal
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#d21a1a"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#d21a1a"
+      - state: inhand-right-text
+
+# region security
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagAsh12Basic
+  name: ash-12 magazine basic blueprint
+  description: A blueprint with a schematic of a ash-12 magazine with all basic variants. It can be inserted into an autolathe and security fabricator.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineAsh12Slug
+    - MagazineAsh12Beanbag
+    - MagazineAsh12Flare
+
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagMagnumBasic
+  name: magnum basic magazine blueprint
+  description: A blueprint with a schematic of a basic magnum magazine. It can be inserted into an autolathe and security fabricator.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineMagnumEmpty
+    - MagazineMagnumPractice
+    - MagazineMagnumRubber
+    - MagazineMagnum
+    - MagazineMagnumHP
+    - MagazineMagnumFMJ
+
+# region salvage
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagazineGarand
+  name: Garand clip blueprint
+  description: A blueprint for producing loaded .308 Garand clips in an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineGarand
+
+# region medical
+- type: entity
+  parent: TechnologyDiskBlueprint
+  id: BlueprintImplanterExtractor
+  description: A blueprint with a schematic of an implant extractor. It can be inserted into an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ImplanterExtractor
+
+- type: entity
+  parent: BaseBlueprintSunrise
+  id: BlueprintProtoAdrenalImplant
+  name: proto-adrenal implant blueprint
+  description: A blueprint with a schematic of a proto-adrenal implant. It can be inserted into a medical techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ProtoAdrenalImplant
+
+- type: entity
+  parent: BaseBlueprintSunrise
+  id: BlueprintFishXenoReaper
+  name: reaper xenoborg blueprint
+  description: A blueprint with a schematic of an empty reaper xenoborg chassis. It can be inserted into the mothership core.
+  components:
+  - type: Tag
+    tags:
+    - BlueprintAutolathe
+    - SunriseBlueprintXenoborg
+    - Document
+    - Paper
+  - type: Blueprint
+    providedRecipes:
+    - FishXenoReaperRecipe

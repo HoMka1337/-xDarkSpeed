@@ -1,0 +1,32 @@
+## Static recipes
+
+# Added to emagged autolathe
+- type: latheRecipePack
+  id: SyndicateAmmoStatic
+  recipes:
+  - MagazineShotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgunSlug
+  - MagazinePistolCaselessRifle
+  - MagazinePistolSubMachineGunCaselessExtended
+  - MagazineBoxAntiMateriel
+  # Sunrise-start
+  - MagazineMagnum
+  - MagazineMagnumFMJ
+  - MagazineMagnumHP
+  - MagazineRifleBoxSP
+  - MagazineRifleBoxFMJ
+  - MagazinePistol40SubMachineGunSP
+  - MagazinePistol40SubMachineGunHP
+  - MagazinePistol40SubMachineGunFMJ
+  - MagazinePistolHighCapacitySP
+  - MagazinePistolHighCapacityHP
+  - MagazinePistolHighCapacityFMJ
+  - MagazinePistolHighCapacityRubber
+  - MagazinePistolHighCapacityEmpty
+  - MagazineDragunovSP
+  - MagazineDragunovFMJ
+  - GrenadeEMP
+  - GrenadeBlast
+  - GrenadeFrag
+  # Sunrise-end

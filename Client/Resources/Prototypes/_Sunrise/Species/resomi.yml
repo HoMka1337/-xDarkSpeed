@@ -1,0 +1,128 @@
+- type: species
+  id: Resomi
+  name: species-name-resomi
+  roundStart: true
+  sponsorOnly: true
+  prototype: MobResomi
+  bodyTypes:
+  - ResomiNormal
+  defaultSkinTone: "#faf7f7"
+  maleFirstNames: names_resomi_first
+  femaleFirstNames: names_resomi_first
+  maleLastNames: names_resomi_packs
+  femaleLastNames: names_resomi_packs
+  naming: FirstLast
+  dollPrototype: MobResomiDummy
+  skinColoration: Hues
+  minAge: 26
+  youngAge: 50
+  oldAge: 90
+  maxAge: 140
+  minWidth: 0.93
+  defaultWidth: 1
+  maxWidth: 1.07
+  minHeight: 0.93
+  defaultHeight: 1
+  maxHeight: 1.07
+  minHeightCm: 125
+  maxHeightCm: 165
+  standardWeight: 40
+  standardDensity: 17
+
+- type: bodyType
+  id: ResomiNormal
+  name: body-normal
+  visualKey: body-normal
+  layers:
+    Head:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: head_m
+    Chest:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: torso_m
+    Eyes:
+      sprite: _Sunrise/Mobs/Customization/eyes.rsi
+      state: resomi
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+        state: torso_f
+- type: markingsGroup
+  id: Resomi
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 2
+      required: true
+      default: [ ResomiTail, ResomiTailFeathers ]
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false

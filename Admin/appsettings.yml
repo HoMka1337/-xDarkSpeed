@@ -1,0 +1,14 @@
+Serilog:
+  Using: [ "Serilog.Sinks.Console" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      Microsoft: Warning
+      Microsoft.AspNetCore: Warning
+  WriteTo:
+    - Name: Console
+  Enrich: [ "FromLogContext" ]
+AllowedHosts: "localhost;127.0.0.1;[::1]"
+urls: "https://localhost:27689"
+WebRootPath: "bin/wwwroot"
+authServer: "https://auth.spacestation14.com"

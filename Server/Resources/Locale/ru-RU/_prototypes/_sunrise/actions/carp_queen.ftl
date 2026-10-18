@@ -1,0 +1,11 @@
+ent-ActionCarpQueenSummon = отложить икру
+    .desc = Откладывает икру, которая при попадании в жидкость вылупляется в случайного карпа.
+ent-ActionCarpQueenOrderStay = отдых
+    .desc = Приказывает карпам-слугам игнорировать угрозы.
+ent-ActionCarpQueenOrderFollow = следуй
+    .desc = Приказывает карпам-слугам следовать вплотную за вами.
+ent-ActionCarpQueenOrderKill = убейте его
+    .desc = Приказывает карпам-слугам атаковать того, на кого вы укажете.
+ent-ActionCarpQueenOrderLoose = вольно
+    .desc = Приказывает карпам-слугам следовать по велению матушки-природы.
+carp-queen-summon-popup = Вы отложили икру!

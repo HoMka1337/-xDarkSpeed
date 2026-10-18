@@ -1,0 +1,416 @@
+####### BODYTYPES ######
+- type: bodyType
+  id: HumanSlimFemale
+  name: body-slim-f
+  visualKey: body-slim-f
+  sexRestrictions:
+    - Male
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Head:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: head_m
+    Chest:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: torso_m
+    Eyes:
+      sprite: _Sunrise/Mobs/Customization/slim_eyes.rsi
+      state: slim_eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanSlimMale
+  name: body-slim-m
+  visualKey: body-slim-m
+  sexRestrictions:
+    - Female
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Head:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: head_m
+    Chest:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: torso_m
+    Eyes:
+      sprite: _Sunrise/Mobs/Customization/slim_eyes.rsi
+      state: slim_eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Slim/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanGigaFemale
+  name: body-giga-f
+  visualKey: body-giga-f
+  sexRestrictions:
+    - Male
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanGigaMale
+  name: body-giga-m
+  visualKey: body-giga-m
+  sexRestrictions:
+    - Female
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Giga/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanFatFemale
+  name: body-fat-f
+  visualKey: body-fat-f
+  sexRestrictions:
+    - Male
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanFatMale
+  name: body-fat-m
+  visualKey: body-fat-m
+  sexRestrictions:
+    - Female
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Fat/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanDistrofikFemale
+  name: body-distrofik-f
+  visualKey: body-distrofik-f
+  sexRestrictions:
+    - Male
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: torso_f
+- type: bodyType
+  id: HumanDistrofikMale
+  name: body-distrofik-m
+  visualKey: body-distrofik-m
+  sexRestrictions:
+    - Female
+    - Futanari # Lust edit - отдельного телосложения нет
+  layers:
+    Eyes:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+      state: r_foot
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Human/Distrofik/parts.rsi
+        state: torso_f
+###### SPRITES THEMSELF ######
+
+# Distrofik:

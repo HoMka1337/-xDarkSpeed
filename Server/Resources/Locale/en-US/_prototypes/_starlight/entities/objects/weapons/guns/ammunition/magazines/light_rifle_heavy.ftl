@@ -1,0 +1,15 @@
+ent-RifleHeavyBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-RifleHeavyMagazineEmpty = magazine Box (.308 any)
+    .suffix = Empty
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineSP = magazine Box (.308 SP)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineFMJ = magazine Box (.308 FMJ)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineIncendiary = magazine Box (.308 incendiary)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineUranium = magazine Box (.308 uranium)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineAP = magazine Box (.308 AP)
+    .desc = { ent-RifleHeavyBase.desc }

@@ -1,0 +1,28 @@
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeAntiMateriel
+  name: cartridge (15mm anti-materiel) # Sunrise-Edit
+  description: A high-power cartridge used by high-precision rifles.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge # Sunrise-Edit
+    - CartridgeAntiMateriel
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielTracked # Sunrise-Edit
+  - type: Sprite
+    scale: 0.8,0.8 # Sunrise-Edit
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi # Sunrise-Edit
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip # Sunrise-Edit
+      map: [ "enum.AmmoVisualLayers.Tip" ] # Sunrise-Edit
+      color: "#B68F0E" # Sunrise-Edit
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition # Sunrise-Edit
+    materialComposition:
+      Steel: 25

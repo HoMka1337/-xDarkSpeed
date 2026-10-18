@@ -1,0 +1,15 @@
+ent-RifleHeavyBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-RifleHeavyMagazineEmpty = короб .308 (любой)
+    .suffix = Пустой
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineSP = короб .308
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineFMJ = короб .308 (ПП)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineIncendiary = короб .308 (зажигательные)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineUranium = короб .308 (урановые)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineAP = короб .308 (ББ)
+    .desc = { ent-RifleHeavyBase.desc }

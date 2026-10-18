@@ -1,0 +1,12 @@
+ent-ClothingFleshSpiderLegs = ноги паука из плоти
+    .desc = Плоть паучьих ног.
+    .suffix = Культ плоти
+ent-ClothingOuterArmorFlesh = доспехи из плоти
+    .desc = Доспехи из плоти.
+    .suffix = Культ плоти
+ent-ClothingOuterHeavyArmorFlesh = тяжелые доспехи из плоти
+    .desc = Тяжелые доспехи из плоти.
+    .suffix = Культ плоти
+ent-ClothingHeadHelmetHeavyArmorFlesh = тяжелый шлем из плоти
+    .desc = Тяжелый шлем из плоти.
+    .suffix = Культ плоти

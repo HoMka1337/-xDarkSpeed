@@ -1,0 +1,413 @@
+- type: entity
+  name: Combat medi-injector
+  parent: [BaseHypospray, BaseCentcommContraband]
+  description: A sterile injector for 4-use. Containing chemicals that regenerate most types of damage.
+  id: MedipenCombatInjector
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/hypospray.rsi
+    state: combat_minihypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    size: Small
+  - type: Solution
+    solution:
+      maxVol: 80
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 15
+      - ReagentId: Omnizine
+        Quantity: 15
+      - ReagentId: Saline
+        Quantity: 15
+      - ReagentId: Rororium
+        Quantity: 20
+      - ReagentId: Dermaline
+        Quantity: 15
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    currentTransferAmount: 20
+  - type: UseDelay
+    delay: 45
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 300
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 750
+  - type: TrashOnSolutionEmpty
+    solution: hypospray
+
+# Medipens
+- type: entity
+  name: ephedrine injector
+  parent: [ChemicalMedipen, BaseSecurityContraband ]
+  id: StimpackNT
+  description: Contains enough ephedrine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#04319a"
+      - state: base-colorB-inhand-left
+        color: "#04319a"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#13049a"
+      - state: base-colorB-inhand-right
+        color: "#04319a"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: stimpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Solution
+    solution:
+      maxVol: 35
+      reagents:
+      - ReagentId: Ephedrine
+        Quantity: 15
+      - ReagentId: Epinephrine
+        Quantity: 10
+      - ReagentId: Tricordrazine
+        Quantity: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpen_empty
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 35
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
+  - type: StaticPrice
+    price: 950
+
+- type: entity
+  name: ephedrine microinjector
+  parent: [ChemicalMedipen, BaseSecurityContraband]
+  id: StimpackMiniNT
+  description: A microinjector of ephedrine that give you about 15 seconds of the chemical's effects.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#13049a"
+      - state: base-colorB-inhand-left
+        color: "#04319a"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#13049a"
+      - state: base-colorB-inhand-right
+        color: "#04319a"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: microstimpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Ephedrine
+        Quantity: 15
+      - ReagentId: Tricordrazine
+        Quantity: 5
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: microstimpen_empty
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 20
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  name: lacerinol auto-injector
+  parent: ChemicalMedipen
+  id: LacerAutoInjector
+  description: A rapid dose of lacerinol and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#558255"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#558255"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: lacerpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: lacerpen_empty
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Lacerinol
+        Quantity: 10
+      - ReagentId: TranexamicAcid
+        Quantity: 5
+
+- type: entity
+  name: bruizine auto-injector
+  parent: ChemicalMedipen
+  id: BruizAutoInjector
+  description: A rapid dose of bruizine and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#c60032"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#c60032"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: bruizpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: bruizpen_empty
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Bruizine
+        Quantity: 10
+      - ReagentId: TranexamicAcid
+        Quantity: 5
+
+- type: entity
+  name: polypyrylium oligomers auto-injector
+  parent: ChemicalMedipen
+  id: PolyAutoInjector
+  description: A rapid dose of polyp... polypyryl... polypyryliu.... It contains extract of spaceman's trumpet. Intended to address brute damage and asphyxiation.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423ff"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423ff"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: polypen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: polypen_empty
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: PolypyryliumOligomers
+        Quantity: 20
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 20
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
+
+- type: entity
+  name: stellibinin auto-injector
+  parent: ChemicalMedipen
+  id: StellibininAutoInjector
+  description: A rapid dose of Stellibinin. Intended to address toxins.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423ff"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423ff"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: stellipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: stellipen_empty
+  - type: Solution
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Stellibinin
+        Quantity: 10
+
+- type: entity
+  name: empty medipen
+  parent: BaseItem
+  description: A empty medipen with endless potential. Does not allow for deviation from Nanotrasen recipes.
+  id: BlankMediPen
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    state: medipen
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#808080"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#808080"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  name: beer medipen
+  parent: ChemicalMedipen
+  id: BeerMedipen
+  description: A single-dose, non-refillable medipen filled with beer and vodkizine.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#d69a22"
+      - state: base-colorB-inhand-left
+        color: "#8a4d1c"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#d69a22"
+      - state: base-colorB-inhand-right
+        color: "#8a4d1c"
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Beer
+        Quantity: 11
+      - ReagentId: Vodkizine
+        Quantity: 4
+
+- type: entity
+  name: coal auto-injector
+  parent: ChemicalMedipen
+  id: CoalAutoInjector
+  description: Clears your blood and treats poison damage over 30 seconds.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#404040"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#404040"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: coalpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: coalpen_empty
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Charcoal
+        Quantity: 15
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 15
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: JetInjectorSyndicateBox
+  name: hacked jet injector
+  description: A box containing a sterile injector for rapid administration of drugs to patients. The packaging disintegrates upon opening, leaving no residue.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxicons.rsi
+    state: medhypo
+  - type: SpawnItemsOnUse
+    items:
+    - id: JetInjectorSyndicate
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: JetInjector
+  id: JetInjectorSyndicate
+  suffix: Syndicate
+  name: jet injector
+  description: A sterile injector for convenient administration of drugs to patients.
+  components:
+  - type: Injector
+    activeModeProtoId: SyndicateJetInjectorDynamicMode
+    allowedModes:
+    - SyndicateJetInjectorInjectMode
+    - SyndicateJetInjectorDynamicMode

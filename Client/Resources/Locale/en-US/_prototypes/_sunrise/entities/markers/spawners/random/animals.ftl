@@ -1,0 +1,15 @@
+ent-AnimalRandomSpawner = random animal spawner
+    .desc = { ent-MarkerBase.desc }
+ent-CarpSpawnerMundane = nPC Carp Spawner
+    .suffix = 100
+    .desc = { ent-MarkerBase.desc }
+ent-HatSpawner = hat Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SnakeSpawnerMundane = nPC Snake Spawner
+    .suffix = 100
+    .desc = { ent-MarkerBase.desc }
+ent-SpaceTickSpawnerNPC = nPC Space Tick Spawner
+    .suffix = 100
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawner = nPC Xeno Spawner
+    .desc = { ent-MarkerBase.desc }

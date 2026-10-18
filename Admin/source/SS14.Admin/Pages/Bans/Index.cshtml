@@ -1,0 +1,57 @@
+﻿@page
+@using SS14.Admin.Pages.Tables
+@using SS14.Admin.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SS14.Admin.Pages.BansModel
+
+@{
+    ViewData["Title"] = "Блокировки";
+    var highlightBan = 0;
+    if (TempData.TryGetValue("HighlightNewBan", out var highlightObj))
+    {
+        highlightBan = (int)highlightObj!;
+    }
+}
+
+<partial name="Shared/StatusMessageAlert" />
+
+<div class="container mb-3">
+    @if (User.IsInRole("BAN"))
+    {
+        <a class="btn btn-primary" asp-page="./Create">Создать блокировку</a>
+    }
+    @if (User.IsInRole("MASSBAN"))
+    {
+        <a class="btn btn-primary" asp-page="./CreateMassBan">Создать массовую блокировку</a>
+    }
+</div>
+
+
+<form asp-page="./Index" method="get" class="container mb-3">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search", "show")
+    <div class="form-group row g-0">
+        <label class="col-lg-3 col-form-label" for="searchBar">Поиск по имени, коду аккаунта, устройству, сетевому адресу или администратору:</label>
+        <div class="col-lg-5">
+            <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control "/>
+        </div>
+        <div class="col-lg-4">
+            <div class="row g-0">
+                <div class="col-6">
+                    <select class="form-control " name="show">
+                        <option selected="@(Model.Show == BansModel.ShowFilter.Active)" value="">Действующие блокировки</option>
+                        <option selected="@(Model.Show == BansModel.ShowFilter.All)" value="all">Все блокировки</option>
+                        <option selected="@(Model.Show == BansModel.ShowFilter.Expired)" value="expired">Истёкшие и снятые</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input type="submit" value="Найти" class="btn btn-primary btn-block w-100"/>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-danger btn-block w-100" asp-page="./Index">Сбросить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<partial name="Tables/BansTable" model="@(new BansTableModel(Model.SortState, Model.Pagination, highlightBan,true))"/>

@@ -1,0 +1,15 @@
+- type: job
+  id: Visitor
+  name: job-name-visitor
+  description: job-description-visitor
+  playTimeTracker: JobVisitor
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hr # Sunrise-RoleTime
+  icon: JobIconVisitor
+  setPreference: false
+  overrideConsoleVisibility: true
+  access:
+  - Maintenance
+  extendedAccess:
+  - External

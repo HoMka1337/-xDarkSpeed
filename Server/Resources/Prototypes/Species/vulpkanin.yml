@@ -1,0 +1,30 @@
+# TODO сейчас 4 вида вульп:
+# прямые ноги, маленькая морда
+# прямые ноги, большая морда
+# изогнутые ноги, маленькая морда
+# изогнутые ноги, большая морда
+# НО тело всего ОДНО. Система бодитайпов не изменяет тело!
+# То есть компонент Body содержит сейчас изогнутые ноги с маленькой мордой
+
+- type: species
+  id: Vulpkanin
+  name: species-name-vulpkanin
+  roundStart: true
+  prototype: MobVulpkanin
+  sexes: [Male, Female, Futanari] # Lust edit
+  bodyTypes: # Sunrise-Edit
+  - VulpkaninNormal
+  - VulpkaninStraightSmallMuzzle
+  - VulpkaninCurvedBigMuzzle
+  - VulpkaninStraightBigMuzzle
+  defaultSkinTone: "#5a3f2d"
+  dollPrototype: AppearanceVulpkanin
+  skinColoration: VulpkaninColors
+  maleFirstNames: names_vulpkanin_male
+  femaleFirstNames: names_vulpkanin_female
+  # lastNames: names_vulpkanin_last # Sunrise-edit
+  maleLastNames: names_vulpkanin_last
+  femaleLastNames: names_vulpkanin_last
+  buttScan: # Sunrise edit
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human

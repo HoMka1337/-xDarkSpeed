@@ -1,0 +1,46 @@
+- type: entity
+  name: Footstep
+  id: Footstep
+  save: false
+  description: Trace of liquid
+  components:
+  - type: Clickable
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    drawdepth: FloorObjects
+  - type: Solution
+    id: step
+    solution: { maxVol: 2.5 }
+  - type: Footprint
+    printType: Foot
+  - type: Puddle
+    solution: step
+    canSlow: false
+    canSlip: false
+  - type: Appearance
+  - type: DnaSubstanceTrace
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      footstepFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+
+- type: entity
+  name: drag mark
+  parent: Footstep
+  id: DragMark
+  components:
+  - type: Footprint
+    printType: DragMark
+  - type: Solution
+    id: step
+    solution: { maxVol: 5 }

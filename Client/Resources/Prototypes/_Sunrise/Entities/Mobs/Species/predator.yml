@@ -1,0 +1,103 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearancePredator
+  name: predator appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: TorsoPredator
+      Head: HeadPredator
+      ArmLeft: LeftArmPredator
+      ArmRight: RightArmPredator
+      HandRight: RightHandPredator
+      HandLeft: LeftHandPredator
+      LegLeft: LeftLegPredator
+      LegRight: RightLegPredator
+      FootLeft: LeftFootPredator
+      FootRight: RightFootPredator
+      Brain: OrganPredatorBrain
+      Eyes: OrganPredatorEyes
+      Heart: OrganPredatorHeart
+      Lungs: OrganPredatorLungs
+      Stomach: OrganPredatorStomach
+      Liver: OrganPredatorLiver
+      Kidneys: OrganPredatorKidneys
+
+- type: entity
+  parent:
+  - AppearancePredator
+  - BaseSpeciesMobOrganic
+  id: BaseMobPredator
+  name: Urist McPredator
+  abstract: true
+  components:
+  - type: Interactions
+  - type: Hunger
+  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: full
+  - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
+  - type: Perishable
+  - type: HumanoidProfile
+    species: Predator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 200
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Vocal
+    sounds:
+      Male: Predator
+      Female: Predator
+      Unsexed: Predator
+  - type: TypingIndicator
+    proto: alien
+  - type: Damageable
+    damageModifierSet: Predator
+  - type: Injurable
+    damageContainer: Biological
+  - type: Tag
+    tags:
+      - Predator
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidPredator
+        Quantity: 300
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#008000"
+  - type: FootprintEmitter
+  #Lust start
+  - type: Scent
+    personalScentProfile: LustPredator
+  #Lust  end
+
+- type: entity
+  parent: AppearancePredator
+  id: MobPredatorDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidProfile
+    species: Predator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers

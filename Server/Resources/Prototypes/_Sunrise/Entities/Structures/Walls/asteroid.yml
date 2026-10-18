@@ -1,0 +1,169 @@
+- type: entity
+  id: IronRockCoalCrab
+  parent: IronRockCoal
+  suffix: Coal Crab
+  components:
+  - type: OreVein
+    currentOre: OreCoalCrab
+
+- type: entity
+  id: IronRockGoldCrab
+  parent: IronRockGold
+  suffix: Gold Crab
+  components:
+  - type: OreVein
+    currentOre: OreGoldCrab
+
+- type: entity
+  id: IronRockQuartzCrab
+  parent: IronRockQuartz
+  suffix: Quartz Crab
+  components:
+  - type: OreVein
+    currentOre: OreQuartzCrab
+
+- type: entity
+  id: IronRockSilverCrab
+  parent: IronRockSilver
+  suffix: Silver Crab
+  components:
+  - type: OreVein
+    currentOre: OreSilverCrab
+
+- type: entity
+  id: IronRockIronCrab
+  parent: IronRockIron
+  suffix: Iron Crab
+  components:
+  - type: OreVein
+    currentOre: OreIronCrab
+
+- type: entity
+  id: IronRockUraniumCrab
+  parent: IronRockUranium
+  suffix: Uranium Crab
+  components:
+  - type: OreVein
+    currentOre: OreUraniumCrab
+
+- type: entity
+  id: IronRockBananiumCrab
+  parent: IronRockBananium
+  suffix: Bananium Crab
+  components:
+  - type: OreVein
+    currentOre: OreBananiumCrab
+
+- type: entity
+  id: IronRockSaltCrab
+  parent: IronRockSalt
+  suffix: Salt Crab
+  components:
+  - type: OreVein
+    currentOre: OreSaltCrab
+
+- type: entity
+  id: IronRockPlasmaCrab
+  parent: IronRockPlasma
+  suffix: Plasma Crab
+  components:
+  - type: OreVein
+    currentOre: OrePlasmaCrab
+
+- type: entity
+  id: IronRockDiamondCrab
+  parent: IronRockDiamond
+  suffix: Diamond Crab
+  components:
+  - type: OreVein
+    currentOre: OreDiamondCrab
+
+- type: entity
+  id: SunriseVGRoidIronRockIronCrabChance
+  parent: IronRockIron
+  suffix: Iron, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreIronCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockCoalCrabChance
+  parent: IronRockCoal
+  suffix: Coal, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreCoalCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockQuartzCrabChance
+  parent: IronRockQuartz
+  suffix: Quartz, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreQuartzCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockSaltCrabChance
+  parent: IronRockSalt
+  suffix: Salt, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreSaltCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockGoldCrabChance
+  parent: IronRockGold
+  suffix: Gold, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreGoldCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockSilverCrabChance
+  parent: IronRockSilver
+  suffix: Silver, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreSilverCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockPlasmaCrabChance
+  parent: IronRockPlasma
+  suffix: Plasma, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOrePlasmaCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockUraniumCrabChance
+  parent: IronRockUranium
+  suffix: Uranium, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreUraniumCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockBananiumCrabChance
+  parent: IronRockBananium
+  suffix: Bananium, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreBananiumCrabChance
+
+- type: entity
+  id: SunriseVGRoidIronRockDiamondCrabChance
+  parent: IronRockDiamond
+  suffix: Diamond, Crab Chance
+  components:
+  - type: OreVein
+    currentOre: null
+    oreRarityPrototypeId: SunriseVGRoidOreDiamondCrabChance

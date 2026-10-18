@@ -1,0 +1,17 @@
+- type: species
+  id: Reptilian
+  name: species-name-reptilian
+  roundStart: true
+  prototype: MobReptilian
+  sexes: [Male, Female, Futanari] # Lust edit
+  bodyTypes: # Sunrise-Edit
+  - ReptilianNormal
+  defaultSkinTone: "#34a223"
+  dollPrototype: AppearanceReptilian
+  skinColoration: Hues
+  maleFirstNames: NamesReptilianMale
+  femaleFirstNames: NamesReptilianFemale
+  naming: FirstDashFirst
+  buttScan: # Sunrise edit
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human

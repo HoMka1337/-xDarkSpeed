@@ -1,0 +1,14 @@
+- type: species
+  id: SlimePerson
+  name: species-name-slime
+  roundStart: true
+  prototype: MobSlimePerson
+  sexes: [Male, Female, Futanari] # Lust edit
+  bodyTypes: # Sunrise-Edit
+  - SlimePersonNormal
+  defaultSkinTone: "#b8b8b8"
+  dollPrototype: AppearanceSlimePerson
+  skinColoration: Hues
+  buttScan: # Sunrise edit
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human

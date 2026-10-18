@@ -1,0 +1,11 @@
+@page
+@model ErrorModel
+@{ ViewData["Title"] = "Ошибка"; }
+<section class="gs-status-page" aria-labelledby="error-title">
+    <div class="gs-status-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div>
+    <span class="gs-eyebrow">GS14 ADMIN</span>
+    <h1 id="error-title">Не удалось выполнить запрос</h1>
+    <p class="gs-muted">Попробуйте ещё раз. Если ошибка повторяется, проверьте журнал панели.</p>
+    @if (Model.ShowRequestId) { <div class="gs-status-detail">Код запроса: <code>@Model.RequestId</code></div> }
+    <a class="btn btn-primary" asp-page="/Index">На главную</a>
+</section>

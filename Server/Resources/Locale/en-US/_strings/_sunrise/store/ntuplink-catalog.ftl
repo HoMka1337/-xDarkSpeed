@@ -1,0 +1,24 @@
+ntuplink-mech-teleporter-medium-name = Teleporter assault Mech.
+ntuplink-mech-teleporter-medium-desc = contains crate with ERT Gygax.
+ntuplink-mech-teleporter-heavy-name = Teleporter Heavy Mech.
+ntuplink-mech-teleporter-heavy-desc = contains crate with Marauder.
+ntuplink-mech-teleporter-eliteheavy-name = Teleporter Heavy Elite Mech.
+ntuplink-mech-teleporter-eliteheavy-desc = contains crate with Seraph. for high command only!
+
+ntuplink-mech-powercage-nanotrasen-name = NanoTrasen power cage
+ntuplink-mech-powercage-nanotrasen-desc = A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+ntuplink-deathrattle-implant-desc = A box containing enough deathrattle implants for the whole squad. Relays a message containing your position to the Centcomm channel when you go into a critical state or die.
+ntuplink-equip-jetpackvoid-name = void jetpack
+ntuplink-equip-jetpackmini-name = mini jetpack
+ntuplink-equip-jetpack-name = jetpack
+ntuplink-equip-riotshield-name = riot shield
+ntuplink-equip-riotlasershield-name = riot laser shield
+ntuplink-equip-riotbulletshield-name = riot bullet shield
+ntuplink-equip-telescopicshield-name = telescopic shield
+ntuplink-engineering-powercellnt-name = PowerCell NanoTrasen
+ntuplink-gun-bundlewt550-name = Bundle WT550
+ntuplink-gun-bundlep90-name = Bundle P-90
+ntuplink-gun-bundle-leikha-name = Bundle Leikha
+ntuplink-gun-bundlehristov-name = Bundle Hristov
+ntuplink-gun-bundlelaw12-name = Enforcer shotgun bundle
+ntuplink-gun-minigun-desc = When one barrel isn’t enough. A rotary beast built for situations where accuracy is replaced by volume. Requires resolve, strong arms, and a healthy spine.

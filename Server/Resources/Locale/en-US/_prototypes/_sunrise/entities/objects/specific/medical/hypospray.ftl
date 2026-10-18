@@ -1,0 +1,31 @@
+ent-MedipenCombatInjector = combat medi-injector
+    .desc = A sterile injector for 4-use. Containing chemicals that regenerate most types of damage.
+ent-HyposprayERT = eRT hypospray
+    .desc = A sterile injector for rapid administration of drugs to patients.
+ent-StimpackNT = ephedrine injector
+    .desc = Contains enough ephedrine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
+ent-StimpackMiniNT = ephedrine microinjector
+    .desc = A microinjector of ephedrine that give you about 15 seconds of the chemical's effects.
+ent-CoalAutoInjector = coal auto-injector
+    .desc = Clears your blood and treats poison damage over 30 seconds.
+ent-BeerMedipen = beer medipen
+    .desc = A single-dose medipen filled with beer.
+
+ent-HyposprayMedicalNoFilterBox = hacked medical hypospray
+    .desc = A box containing a sterile injector for rapid administration of drugs to patients. The internal toxin filter was removed during hacking. The packaging disintegrates upon opening, leaving no residue.
+
+ent-JetInjectorSyndicate = { ent-JetInjector }
+    .desc = { ent-JetInjector.desc }
+    .suffix = Syndicate
+ent-JetInjectorSyndicateBox = hacked medical jet injector
+    .desc = A box containing a sterile injector for rapidly administering medication to patients. The packaging disintegrates when opened, leaving no trace.
+ent-BlankMediPen = blank medipen
+    .desc = An empty medipen with infinite potential. Allows no deviations from the formula.
+ent-PolyAutoInjector = polypyrilium oligomer auto-injector
+    .desc = An emergency dose of polypyrilium oligomers intended to treat mechanical injuries of all kinds.
+ent-StellibininAutoInjector = stellibinin auto-injector
+    .desc = An emergency dose of stellibinin intended for cases of severe poisoning.
+ent-LacerAutoInjector = lacerinol auto-injector
+    .desc = An emergency dose of lacerinol and tranexamic acid intended for use in combat situations.
+ent-BruizAutoInjector = bruizine auto-injector
+    .desc = An emergency dose of bruizine and tranexamic acid intended for use in combat situations.

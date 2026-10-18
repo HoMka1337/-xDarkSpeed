@@ -1,0 +1,4 @@
+@page "{code:int}"
+@model SS14.Admin.Pages.StatusModel
+@{ Layout = "_DonationLayout"; ViewData["Title"] = Model.Heading; }
+<section class="support-order support-width"><span class="support-eyebrow">GRIBLE STATION · @Model.Code</span><h1>@Model.Heading</h1><p class="support-lead">@Model.Description</p><a class="support-button" asp-page="/Donate/Index">На сайт поддержки →</a></section>

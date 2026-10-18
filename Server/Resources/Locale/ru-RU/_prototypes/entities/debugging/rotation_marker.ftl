@@ -1,0 +1,9 @@
+ent-debugRotation1 = дебаг_вращение1
+    .suffix = ДЕБАГ
+    .desc = { "" }
+ent-debugRotation4 = дебаг_вращение4
+    .suffix = ДЕБАГ
+    .desc = { "" }
+ent-debugRotationTex = дебаг_вращение_текстуры
+    .suffix = ДЕБАГ
+    .desc = { "" }

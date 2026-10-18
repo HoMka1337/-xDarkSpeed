@@ -1,0 +1,120 @@
+- type: entity
+  id: PartResomi
+  parent: OrganBase
+  name: "resomi body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: Resomi
+
+- type: entity
+  id: TorsoResomi
+  name: "resomi torso"
+  parent: [PartResomi, OrganBaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadResomi
+  name: "resomi head"
+  parent: [PartResomi, OrganBaseHead]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmResomi
+  name: "left resomi arm"
+  parent: [PartResomi, OrganBaseArmLeft]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmResomi
+  name: "right resomi arm"
+  parent: [PartResomi, OrganBaseArmRight]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandResomi
+  name: "left resomi hand"
+  parent: [PartResomi, OrganBaseHandLeft]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandResomi
+  name: "right resomi hand"
+  parent: [PartResomi, OrganBaseHandRight]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegResomi
+  name: "left resomi leg"
+  parent: [PartResomi, OrganBaseLegLeft]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegResomi
+  name: "right resomi leg"
+  parent: [PartResomi, OrganBaseLegRight]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootResomi
+  name: "left resomi foot"
+  parent: [PartResomi, OrganBaseFootLeft]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootResomi
+  name: "right resomi foot"
+  parent: [PartResomi, OrganBaseFootRight]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Resomi/parts.rsi
+    state: "r_foot"

@@ -1,0 +1,66 @@
+@page
+@using SS14.Admin.Helpers
+@using SS14.Admin.Pages.Tables
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Content.Server.Database
+@model SS14.Admin.Pages.Characters.CharactersIndexModel
+
+@{
+    ViewData["Title"] = "Персонажи";
+}
+
+<form asp-page="./Index" method="get" class="container mb-3">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search")
+    <div class="form-group row">
+        <label class="col-md-3" for="searchBar">Поиск по имени персонажа:</label>
+        <div class="col-md-7">
+            <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control form-control-sm"/>
+        </div>
+        <input type="submit" value="Найти" class="btn btn-primary col-md-1 btn-sm"/>
+        <a class="btn btn-danger btn-sm col-md-1" asp-page="./Index">Сбросить</a>
+    </div>
+</form>
+
+<partial name="Tables/Pagination" for="Pagination"/>
+
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "player_name", "Игрок"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "character_name", "Имя персонажа"))"/>
+        <th>Возраст</th>
+        <th>Биологический пол</th>
+        <th>Гендер</th>
+        <th>Раса</th>
+        <th>Предпочитаемая должность</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var (profile, player) in Model.Pagination.List.PaginatedItems)
+    {
+        <tr>
+            <td>
+            @if (player == null)
+            {
+                <span class="font-monospace small">@profile.Preference.UserId</span>
+            }
+            else
+            {
+                <a asp-page="/Players/Info" asp-route-userId="@player.UserId">
+                    <strong>@player.LastSeenUserName</strong>
+                </a>
+            }
+            </td>
+            <td>@profile.CharacterName</td>
+            <td>@profile.Age</td>
+            <td>@SS14.Admin.LustRussianUi.Name(profile.Sex)</td>
+            <td>@SS14.Admin.LustRussianUi.Name(profile.Gender)</td>
+            <td>@SS14.Admin.LustRussianUi.Name(profile.Species)</td>
+            @{ var favJob = profile.Jobs.SingleOrDefault(e => e.Priority == DbJobPriority.High); }
+            <td>@(favJob == null ? "нет" : SS14.Admin.LustRussianUi.Name(favJob.JobName))</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="Tables/Pagination" for="Pagination"/>

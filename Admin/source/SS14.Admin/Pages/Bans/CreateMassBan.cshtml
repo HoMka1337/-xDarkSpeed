@@ -1,0 +1,79 @@
+﻿@page
+@model SS14.Admin.Pages.Bans.CreateMassBanModel
+
+@{
+    ViewData["Title"] = "Массовая блокировка";
+}
+
+<partial name="Shared/StatusMessageAlert" />
+
+<div class="container mt-4">
+    <h1 class="text-center">Массовая блокировка</h1>
+
+    <div class="alert alert-info">
+        <strong>Формат файла TSV:</strong>
+        <p>TSV — таблица, в которой столбцы разделены табуляцией. Названия столбцов нужно сохранить точно:</p>
+        <ul>
+            <li><strong>user_id</strong> (уникальный код аккаунта)</li>
+            <li><strong>address</strong> (сетевой адрес или подсеть)</li>
+            <li><strong>hwid</strong> (код устройства в формате base64)</li>
+            <li><strong>reason</strong> (причина блокировки)</li>
+            <li><strong>datacenter</strong> (true или false: исключение для адресов дата-центров)</li>
+            <li><strong>blacklisted_range</strong> (true или false: исключение для подсетей из чёрного списка)</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="form-group">
+                    <label for="file" class="form-label">Выбери файл .tsv для загрузки:</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <div class="mt-2">
+                    <button type="button" class="btn btn-primary" id="unbanButton" onclick="showConfirmation()">Заблокировать</button>
+                </div>
+                <div class="mt-2" id="confirmationButton" style="display: none;">
+                    <button type="submit" class="btn btn-danger">Подтвердить действие?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        <ul>
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success mt-3" role="alert">
+        @TempData["StatusMessage"]
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function showConfirmation() {
+            const confirmationButton = document.getElementById('confirmationButton');
+            const unbanButton = document.getElementById('unbanButton');
+            confirmationButton.style.display = 'block';
+            unbanButton.style.display = 'none';
+            setTimeout(function() {
+                confirmationButton.style.display = 'none';
+                unbanButton.style.display = 'block';
+            }, 3000); // Revert after 3 seconds
+        }
+    </script>
+}

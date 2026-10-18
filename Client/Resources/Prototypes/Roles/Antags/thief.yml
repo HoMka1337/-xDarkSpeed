@@ -1,0 +1,41 @@
+- type: antag
+  id: Thief
+  name: roles-antag-thief-name
+  antagonist: true
+  setPreference: true
+  playTimeTracker: AntagThief # Sunrise-Edit
+  objective: roles-antag-thief-objective
+  guides: [ Thieves ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 1h
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: thief
+  storytellerStress: 0.5 # Sunrise-Edit
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Thief
+  prefRoles:
+  - Thief
+  allowNonHumans: true
+  multiAntagSetting: NotExclusive
+  startingGear: ThiefGear
+  components:
+  # - type: Pacified # Sunrise-Edit
+  - type: Thieving
+    stripTimeReduction: 2
+    stealthy: true
+  mindRoles:
+  - MindRoleThief
+  briefing:
+    sound: "/Audio/Misc/thief_greeting.ogg"
+
+- type: startingGear
+  id: ThiefGear
+  storage:
+    back:
+    - ThiefBeacon
+    - SatchelThief

@@ -1,0 +1,59 @@
+- type: job
+  id: BlueShieldOperative
+  name: job-name-blueshield-operative
+  description: job-description-blueshield-operative
+  playTimeTracker: JobBlueShieldOperative
+  # Lust-Start
+  speciesBlacklist:
+  - Felinid
+  # Lust-End
+  requirements:
+    # Lust-Start
+    - !type:AgeRequirement
+      requiredAge: 25
+    - !type:DepartmentTimeRequirement
+      department: BlueShield
+      time: 124000 # 40 hrs
+    # Lust-End
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 124000 # 40 hrs
+  startingGear: BlueShieldOperativeGear
+  icon: JobIconNanotrasen
+  supervisors: job-supervisors-centcom
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+  # Lust-Start
+    - !type:AddComponentSpecial
+      components:
+      - type: ParadoxCloneImmune
+  # Lust-End
+
+
+- type: startingGear
+  id: BlueShieldOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    shoes: ClothingShoesBootsBlueShieldFilled
+    eyes: ClothingEyesGlassesBlueShield
+    head: ClothingHeadHatBeretBlueShield
+    outerClothing: ClothingOuterArmorBlueShield
+    id: BlueShieldOperativePDA
+    ears: ClothingHeadsetCentCom
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingBSMantle
+    back: ClothingBackpackSatchelBlueShield
+    pocket1: WeaponPistolM1984
+    pocket2: WeaponTaser
+  storage:
+    back:
+    - HandheldBSOCrewMonitor
+
+- type: chameleonOutfit
+  id: BlueShieldOperativeChameleonOutfit
+  job: BlueShieldOperative

@@ -1,0 +1,35 @@
+﻿- type: entity
+  id: BloodCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 40
+  - type: BloodCultRule
+  - type: AntagObjectives
+    objectives:
+    - CultistKillObjective
+#    Сюда нужно цель на призыв нарси.
+  - type: AntagSelection
+    selectionTime: JobsAssigned
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: SunriseBloodCultist
+      playerRatio: 15
+      range:
+        min: 1
+        max: 4
+  - type: DynamicRuleCost
+    cost: 150
+
+- type: antagSpecifier
+  parent: BaseAntagSpecifier
+  id: SunriseBloodCultist
+  prefRoles: [ BloodCultist ]
+  blacklist:
+    components:
+    # - Synth # Sunrise-TODO: КПБ
+    - BibleUser
+  mindRoles:
+  - MindRoleCultist

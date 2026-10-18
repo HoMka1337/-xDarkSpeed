@@ -1,0 +1,14 @@
+lust-options-fps-limit = Ограничение FPS:
+lust-options-fps-limit-tooltip = Ограничивает частоту кадров и нагрузку на видеокарту. Работает при выключенной вертикальной синхронизации.
+lust-options-fps-unlimited = Без ограничения
+lust-options-fps-value = { $fps } FPS
+lust-options-effects-heading = Графика и эффекты
+lust-options-parallax = Показывать космический фон
+lust-options-parallax-tooltip = Отключение убирает отрисовку слоёв космического фона. Действует во время игры.
+lust-options-sun-shadows = Показывать солнечные тени
+lust-options-sun-shadows-tooltip = Декоративные тени на картах с солнечным освещением. Отключение убирает отдельный проход отрисовки теней.
+lust-options-ambient-blur = Размытие окружающего освещения
+lust-options-ambient-blur-tooltip = Сглаживает границы окружающего освещения. Отключение уменьшает количество проходов размытия.
+lust-options-low-spec = Для слабого ПК
+lust-options-low-spec-tooltip = Низкое качество освещения и разрешение сцены, без космического фона, солнечных теней, размытия, затенения окружения и свечения. Лимит 60 FPS, вертикальная синхронизация отключена.
+lust-options-apply-hint = Изменения начнут действовать после нажатия «Применить».

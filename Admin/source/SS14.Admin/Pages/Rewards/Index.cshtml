@@ -1,0 +1,52 @@
+@page
+@model SS14.Admin.Pages.Rewards.IndexModel
+@{ ViewData["Title"] = "Выдачи"; }
+<div class="gs-page-heading"><div><span class="gs-eyebrow">GRIBLE STATION</span><h1>Выдачи игрокам</h1><p class="gs-muted">Персональный доступ к скинам призрака и питомцам.</p></div><span class="gs-label">@Model.State.Grants.Count выдач</span></div>
+@if (Model.Notice != null) { <div class="alert alert-info" role="status">@Model.Notice</div> }
+@if (Model.Error != null) { <div class="alert alert-danger" role="alert">@Model.Error</div> }
+<form method="get" class="card card-body mb-4">
+    <label asp-for="UserId" class="form-label">Игрок — UUID аккаунта</label>
+    <div class="d-flex gap-2 flex-wrap"><input asp-for="UserId" list="gs-reward-players" class="form-control" style="max-width:34rem" required placeholder="Выбери аккаунт из списка или введи UUID" /><button class="btn btn-primary" type="submit">Выбрать игрока</button><a asp-page="./Index" asp-route-userId="@Model.ActorId" class="btn btn-outline-secondary">Мой аккаунт сайта</a></div>
+    <datalist id="gs-reward-players">@foreach (var player in Model.Players) { <option value="@player.Key">@player.Value</option> }</datalist>
+    <small class="gs-muted mt-2">Используй UUID из игрового сервера. У локального клиента он может отличаться от аккаунта сайта.</small>
+</form>
+@if (Model.State.Items.Count == 0)
+{
+    <div class="alert alert-warning">Каталог ещё не получен. Запусти игровой сервер с обновлением выдач; список появится автоматически.</div>
+}
+@if (Model.TargetId is { } target)
+{
+    <h2>@Model.PlayerName(target)</h2><p class="gs-muted"><code>@target</code></p>
+    <div class="row g-3 mb-4">
+    @foreach (var kind in new[] { "ghost", "pet" })
+    {
+        var items = Model.State.Items.Where(i => i.Kind == kind && i.Restricted).ToList();
+        var publicCount = Model.State.Items.Count(i => i.Kind == kind && !i.Restricted);
+        <div class="col-lg-6"><section class="card card-body h-100"><h3>@(kind == "ghost" ? "Скины призрака" : "Питомцы")</h3><p class="gs-muted">@items.Count для персональной выдачи · @publicCount доступны всем</p>
+            <form method="post" asp-page-handler="Grant">
+                <input type="hidden" name="UserId" value="@target" /><input type="hidden" name="kind" value="@kind" />
+                <label for="item-@kind" class="form-label">@(kind == "ghost" ? "Облик" : "Питомец")</label>
+                <select id="item-@kind" name="prototypeId" class="form-select mb-3"><option value="">Выбери из каталога</option>@foreach (var item in items) { <option value="@item.PrototypeId">@item.Name (@item.PrototypeId)</option> }</select>
+                <label for="reason-@kind" class="form-label">Комментарий (необязательно)</label><input id="reason-@kind" name="reason" maxlength="200" class="form-control mb-3" placeholder="Например: награда за мероприятие" />
+                <div class="d-flex flex-wrap gap-2"><button class="btn btn-primary" type="submit" disabled="@(items.Count == 0 || Model.Error != null)">Выдать выбранное</button><button class="btn btn-outline-primary" type="submit" name="all" value="true" disabled="@(items.Count == 0 || Model.Error != null)">@(kind == "ghost" ? "Выдать все скины" : "Выдать всех питомцев")</button></div>
+            </form>
+        </section></div>
+    }
+    </div>
+    <p class="gs-muted">После выдачи переоткрой меню выбора в игре через секунду. Скин применяется через действие призрака, питомец выбирается в лобби и появляется при следующем появлении персонажа.</p>
+}
+<h2 class="gs-section-title">@(Model.TargetId == null ? "Все текущие выдачи" : "Текущие выдачи игрока")</h2>
+<div class="table-responsive"><table class="table"><thead><tr><th>Игрок</th><th>Категория</th><th>Название</th><th>Выдано (UTC)</th><th>Комментарий</th><th></th></tr></thead><tbody>
+@foreach (var grant in Model.State.Grants.Where(g => Model.TargetId == null || g.UserId == Model.TargetId).OrderByDescending(g => g.GrantedAt))
+{
+    <tr><td><a asp-page="./Index" asp-route-userId="@grant.UserId">@Model.PlayerName(grant.UserId)</a></td><td>@(grant.Kind == "ghost" ? "Скин призрака" : "Питомец")</td><td>@Model.ItemName(grant.Kind, grant.PrototypeId)<br /><small class="gs-muted">@grant.PrototypeId</small></td><td>@grant.GrantedAt.UtcDateTime.ToString("dd.MM.yyyy HH:mm")</td><td>@grant.Reason</td><td><form method="post" asp-page-handler="Revoke"><input type="hidden" name="UserId" value="@grant.UserId" /><input type="hidden" name="kind" value="@grant.Kind" /><input type="hidden" name="prototypeId" value="@grant.PrototypeId" /><button class="btn btn-sm btn-outline-danger" type="submit">Отозвать</button></form></td></tr>
+}
+</tbody></table></div>
+@if (!Model.State.Grants.Any(g => Model.TargetId == null || g.UserId == Model.TargetId)) { <p class="gs-muted">Персональных выдач пока нет. Общедоступные облики и питомцы не требуют выдачи.</p> }
+<h2 class="gs-section-title">Последние действия</h2>
+<div class="table-responsive"><table class="table"><thead><tr><th>Время (UTC)</th><th>Действие</th><th>Игрок</th><th>Предмет</th><th>Администратор</th></tr></thead><tbody>
+@foreach (var entry in Model.State.History.Where(h => Model.TargetId == null || h.Grant.UserId == Model.TargetId).Reverse().Take(50))
+{
+    <tr><td>@entry.Grant.GrantedAt.UtcDateTime.ToString("dd.MM.yyyy HH:mm")</td><td>@(entry.Action == "grant" ? "Выдано" : "Отозвано")</td><td>@Model.PlayerName(entry.Grant.UserId)</td><td>@Model.ItemName(entry.Grant.Kind, entry.Grant.PrototypeId)</td><td>@Model.PlayerName(entry.Grant.GrantedBy)</td></tr>
+}
+</tbody></table></div>

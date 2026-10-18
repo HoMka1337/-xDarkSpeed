@@ -1,0 +1,134 @@
+- type: constructionGraph
+  id: FireBomb
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: empty
+      steps:
+      - tag: DrinkCan
+        name: construction-graph-tag-empty-can
+        icon:
+          sprite: Objects/Consumable/Drinks/cola.rsi
+          state: icon_open
+        doAfter: 1
+      - tag: Igniter
+        name: construction-graph-tag-igniter
+        icon:
+          sprite: Objects/Devices/igniter.rsi
+          state: icon
+        doAfter: 1
+  - node: empty
+    entity: FireBombEmpty
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: DrinkColaCanEmpty
+      - !type:SpawnPrototype
+        prototype: Igniter
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Prying
+        doAfter: 1
+    - to: fuel
+      conditions:
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 60
+      steps:
+      - tool: Screwing
+        doAfter: 1
+  - node: fuel
+    entity: FireBombFuel
+    edges:
+    - to: empty
+      conditions:
+      - !type:SolutionEmpty
+        solution: drink
+      steps:
+      - tool: Screwing
+        doAfter: 1
+    - to: firebomb
+      conditions: # no dumping out 29u of the fuel then adding wires :)
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 30
+      steps:
+      - material: Cable
+        amount: 5
+        doAfter: 2
+  - node: firebomb
+    entity: FireBomb
+    edges:
+    - to: fuel
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 5
+      steps:
+      - tool: Cutting
+        doAfter: 2
+    # Sunrise-Start
+    - to: sunrisebundle1
+      steps:
+      - material: Cardboard
+        amount: 1
+        doAfter: 1
+      - material: Cable
+        amount: 10
+        doAfter: 2
+  - node: sunrisebundle1
+    entity: SunriseFireBombSatchel1
+    edges:
+    - to: firebomb
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialCardboard1
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 10
+      steps:
+      - tool: Cutting
+        doAfter: 0.75
+    - to: sunrisebundle2
+      steps:
+      - tag: FireBomb
+        name: construction-graph-tag-firebomb
+        icon:
+          sprite: Objects/Weapons/Bombs/ied.rsi
+          state: base
+        doAfter: 1
+  - node: sunrisebundle2
+    entity: SunriseFireBombSatchel2
+    edges:
+    - to: sunrisebundle1
+      completed:
+      - !type:SpawnPrototype
+        prototype: FireBomb
+      steps:
+      - tool: Cutting
+        doAfter: 0.75
+    - to: sunrisebundle3
+      steps:
+      - tag: FireBomb
+        name: construction-graph-tag-firebomb
+        icon:
+          sprite: Objects/Weapons/Bombs/ied.rsi
+          state: base
+        doAfter: 0.75
+  - node: sunrisebundle3
+    entity: SunriseFireBombBundle
+    edges:
+    - to: sunrisebundle2
+      completed:
+      - !type:SpawnPrototype
+        prototype: FireBomb
+      steps:
+      - tool: Cutting
+        doAfter: 2
+    # Sunrise-End

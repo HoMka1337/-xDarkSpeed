@@ -1,0 +1,26 @@
+# Generated builds and local runtime data
+**/bin/
+**/obj/
+**/private/
+/Admin/PostgreSQL/
+/Server/data/
+.vs/
+.idea/
+*.zip
+*.exe
+*.dll
+*.pdb
+*.log
+*.db
+*.db-*
+*.sqlite*
+*.before-*
+.env
+.env.*
+*.Secret.*
+*.key
+*.pem
+*.pfx
+*.p12
+/Admin/source/SS14.Admin/appsettings.Development.yml
+/Server/grible-server.toml

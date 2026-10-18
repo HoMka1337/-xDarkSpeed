@@ -1,0 +1,17 @@
+﻿@page
+@model SS14.Admin.Pages.Whitelist.RemoveWhitelist
+
+@{
+    var playerName = Model.Player is { } player
+        ? $"{player.LastSeenUserName} ({Model.Whitelist.UserId})"
+        : Model.Whitelist.UserId.ToString();
+
+    ViewData["Title"] = $"Удаление из белого списка — {playerName}";
+}
+
+<form method="post" class="container" asp-route-userId="@Model.Whitelist.UserId">
+    <div class="mb-3 form-label">
+        Удалить из белого списка игрока <strong>@playerName</strong>?
+    </div>
+    <input type="submit" value="Удалить" class="btn btn-danger">
+</form>

@@ -1,0 +1,14 @@
+ent-CEPen = pen-CE-name
+    .desc = Pen-CE-description.
+ent-CmoPen = pen-Cmo-name
+    .desc = Pen-Cmo-description.
+ent-HosPen = pen-Hos-name
+    .desc = Pen-Hos-description.
+ent-QmPen = pen-Qm-name
+    .desc = Pen-Qm-description.
+ent-RdPen = pen-Rd-name
+    .desc = Pen-Rd-description.
+ent-UEGPen = pen-UEG-name
+    .desc = Pen-UEG-description.
+ent-CommaidPen = pink maid pen
+    .desc = A kawaii pink pen for an equally kawaii station worker.

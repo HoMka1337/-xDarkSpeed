@@ -1,0 +1,246 @@
+- type: entity
+  parent: BaseBeaker
+  name: Ampula
+  id: Ampula
+  components:
+  - type: Sprite
+    scale: 0.75,0.75
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    size: Small
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+  - type: Ampula
+  - type: Tag
+    tags:
+    - FitsHardsuit
+
+- type: entity
+  parent: Ampula
+  id: AmpulaPirate
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: pirate
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 25
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior
+        solution: beaker
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassClockwork:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ActionToggleInjection
+  name: toggle the EC
+  description: Toggles EC
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1 # equip noise spam.
+    icon:
+      sprite: _Sunrise/HardsuitInjection/main.rsi
+      state: closeopen
+  - type: InstantAction
+    event: !type:ToggleECEvent
+
+- type: entity
+  id: ActionInjection
+  name: Injecting from the EC
+  description: Injects substances from an ampoule contained in the emergency compartment
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1 # equip noise spam.
+    icon:
+      sprite: _Sunrise/HardsuitInjection/main.rsi
+      state: inject
+  - type: InstantAction
+    event: !type:InjectionEvent
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaCombat
+  suffix: Combat
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 3.75
+      - ReagentId: Omnizine
+        Quantity: 3.75
+      - ReagentId: Saline
+        Quantity: 3.75
+      - ReagentId: Rororium
+        Quantity: 5
+      - ReagentId: Dermaline
+        Quantity: 3.75
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaTric
+  suffix: Tricordrazine
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Tricordrazine
+        Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaBica
+  suffix: Bicaridine
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 15
+      - ReagentId: Epinephrine
+        Quantity: 5
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaDerm
+  suffix: Dermaline
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 10
+      - ReagentId: Epinephrine
+        Quantity: 5
+      - ReagentId: Leporazine
+        Quantity: 5
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaDylo
+  suffix: Dylovene
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Dylovene
+        Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaDexa
+  suffix: Dexalin
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Dexalin
+        Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaHyro
+  suffix: Hyronalin
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Hyronalin
+        Quantity: 20
+
+- type: entity
+  parent: AmpulaPirate
+  name: Ampula
+  id: AmpulaBuccaneerSpirit
+  suffix: Buccaneer spirit
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Stimulants
+        Quantity: 10
+      - ReagentId: Vodkizine
+        Quantity: 10
+      - ReagentId: Omnizine
+        Quantity: 5
+      - ReagentId: Rororium
+        Quantity: 5
+
+- type: entity
+  parent: AmpulaPirate
+  name: Ampula
+  id: AmpulaMurmillo
+  suffix: Murmillo, auto-recharge
+  components:
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: DarkRedRum
+        Quantity: 20
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: DarkRedRum
+        Quantity: 20
+    duration: 180 # Lust-Edit
+  - type: Tag
+    tags:
+    - FitsHardsuit
+    - FitsMurmilloHardsuit
+

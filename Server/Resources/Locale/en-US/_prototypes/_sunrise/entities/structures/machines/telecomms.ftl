@@ -1,0 +1,13 @@
+ent-TelecomServerFilledLaw = { ent-TelecomServer }
+    .suffix = Law
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerFilledBlueShield = { ent-TelecomServer }
+    .suffix = BlueShield
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerFilledUSSP = { ent-TelecomServer }
+    .suffix = USSP
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT2 = advanced telecommunication server
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT3 = experimental telecommunication server
+    .desc = { ent-TelecomServer.desc }

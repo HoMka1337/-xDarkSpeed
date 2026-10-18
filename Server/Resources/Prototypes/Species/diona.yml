@@ -1,0 +1,19 @@
+- type: species
+  id: Diona
+  name: species-name-diona
+  roundStart: true
+  prototype: MobDiona
+  bodyTypes: # Sunrise-Edit
+  - DionaNormal
+  defaultSkinTone: "#cdb369"
+  dollPrototype: AppearanceDiona
+  skinColoration: Hues
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  maleLastNames: NamesDionaLast # Russian-LastnameGender
+  femaleLastNames: NamesDionaLast # Russian-LastnameGender
+  naming: TheFirstofLast
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: diona

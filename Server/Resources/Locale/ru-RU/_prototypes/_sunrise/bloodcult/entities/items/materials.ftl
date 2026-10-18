@@ -1,0 +1,12 @@
+ent-CultRunicMetal = рунический металл
+    .desc = Необычный лист металла с пульсирующей руной.
+    .suffix = Полный
+ent-CultRunicMetal1 = { ent-CultRunicMetal }
+    .suffix = Один
+    .desc = { ent-CultRunicMetal.desc }
+ent-CultRunicMetal20 = { ent-CultRunicMetal }
+    .suffix = 20
+    .desc = { ent-CultRunicMetal.desc }
+ent-CultRunicMetal10 = { ent-CultRunicMetal }
+    .suffix = 10
+    .desc = { ent-CultRunicMetal.desc }

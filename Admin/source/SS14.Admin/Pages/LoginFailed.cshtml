@@ -1,0 +1,11 @@
+@page
+@model SS14.Admin.Pages.LoginFailed
+@{ ViewData["Title"] = "Нет доступа"; }
+<section class="gs-status-page" aria-labelledby="access-title">
+    <div class="gs-status-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
+    <span class="gs-eyebrow">ДОСТУП ОГРАНИЧЕН</span>
+    <h1 id="access-title">Не удалось войти</h1>
+    <p class="gs-muted">У этого аккаунта нет действующих прав администратора на сервере Grible Station.</p>
+    <div class="gs-status-detail">Проверьте, что выбран нужный игровой аккаунт. Для первого входа владельца его UUID должен быть указан в настройках панели.</div>
+    <div class="gs-status-actions"><a class="btn btn-primary" asp-controller="Login" asp-action="Index">Повторить вход</a><a class="btn btn-outline-secondary" asp-page="/Index">На главную</a></div>
+</section>

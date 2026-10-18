@@ -1,0 +1,58 @@
+using System.Diagnostics;
+using System.Security.Claims;
+using Content.Server.Database;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.EntityFrameworkCore;
+using SS14.Admin.Admins;
+using SS14.Admin.Helpers;
+
+namespace SS14.Admin
+{
+    public sealed class LoginHandler
+    {
+        private readonly PostgresServerDbContext _dbContext;
+        private readonly LinkGenerator _linkGenerator;
+
+        public LoginHandler(
+            PostgresServerDbContext dbContext,
+            LinkGenerator linkGenerator)
+        {
+            _dbContext = dbContext;
+            _linkGenerator = linkGenerator;
+        }
+
+        public async Task HandleTokenValidated(TokenValidatedContext ctx)
+        {
+            var identity = ctx.Principal?.Identities?.FirstOrDefault(i => i.IsAuthenticated);
+            if (identity == null)
+            {
+                Debug.Fail("Unable to find identity.");
+            }
+
+            var guid = identity.Claims.GetUserId();
+
+            var adminData = await _dbContext.Admin
+                .Include(a => a.AdminRank)
+                .ThenInclude(r => r!.Flags)
+                .Include(a => a.Flags)
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(a => a.UserId == guid);
+
+            adminData ??= await ctx.HttpContext.RequestServices.GetRequiredService<GribleAdminAccess>().BootstrapOwnerAsync(guid);
+            if (adminData == null || adminData.Suspended)
+            {
+                ctx.Response.Redirect(_linkGenerator.GetUriByPage(ctx.HttpContext, "/LoginFailed")!);
+
+                ctx.HandleResponse();
+                return;
+            }
+
+            var flags = AdminHelper.GetStringFlags(adminData);
+
+            foreach (var flag in flags)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, flag));
+            }
+        }
+    }
+}

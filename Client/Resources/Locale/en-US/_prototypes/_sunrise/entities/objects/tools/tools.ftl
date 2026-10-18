@@ -1,0 +1,13 @@
+ent-RCDAdvancedSunrise = advanced RCD
+    .suffix = CE
+    .desc = { ent-RCD.desc }
+ent-WirecutterAbductor = abductor's wirecutter
+    .desc = { ent-BaseItem.desc }
+ent-ScrewdriverAbductor = abductor's screwdriver
+    .desc = { ent-BaseItem.desc }
+ent-WrenchAbductor = abductor's wrench
+    .desc = { ent-Wrench.desc }
+ent-MultitoolAbductor = abductor's multitool
+    .desc = { ent-Multitool.desc }
+ent-HandHeldMassScannerPirate = holographic pirate map
+    .desc = A hand-held mass scanner disguised as a glowing pirate chart.

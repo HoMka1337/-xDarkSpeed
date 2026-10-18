@@ -1,0 +1,209 @@
+- type: entity
+  parent:
+  # Sunrise-Edit: миксин должен идти перед BaseSpeciesAppearance, чтобы сохранить Sunrise displacement-карты.
+  - SunriseHumanBodyTypeDisplacements
+  - BaseSpeciesAppearance
+  id: AppearanceFelinid
+  name: felinid appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganFelinidTorso
+      Head: OrganFelinidHead
+      ArmLeft: OrganFelinidArmLeft
+      ArmRight: OrganFelinidArmRight
+      HandRight: OrganFelinidHandRight
+      HandLeft: OrganFelinidHandLeft
+      LegLeft: OrganFelinidLegLeft
+      LegRight: OrganFelinidLegRight
+      FootLeft: OrganFelinidFootLeft
+      FootRight: OrganFelinidFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganFelinidEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganFelinidHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganReptilianStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Felinid
+
+- type: entity
+  save: false
+  name: Urist McFelinid
+  parent: [AppearanceFelinid, BaseSpeciesMobOrganic, BaseSpeciesPickupable]
+  id: MobFelinidBase
+  abstract: true
+  components:
+  - type: Interactions
+  - type: MultiHandedItem
+  - type: OwOAccent
+  - type: Speech
+    speechVerb: Felinid
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Hunger
+    baseDecayRate: 0.015
+  - type: Thirst
+    baseDecayRate: 0.05
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatFelinid
+      amount: 2
+  - type: HumanoidProfile
+    species: Felinid
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Felinid
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageModifierSet: Felinid
+  - type: Injurable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 300
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      70: 0.5
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 60
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Slash: 3
+  - type: Stamina
+    baseCritThreshold: 100
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
+  - type: Vocal
+    sounds:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid
+      Futanari: FemaleFelinid # Lust-Edit
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.5
+    damageRecovery:
+      types:
+        Asphyxiation: -1.5
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch, Ingestion ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPie
+      - !type:Emote
+        emote: Hisses
+        showInChat: true
+        probability: 0.25
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 2
+  - type: FelinidLicking
+    damage:
+      types:
+        Blunt: -2
+        Slash: -3
+        Piercing: -2
+    stopBleeding: true
+    bloodlossModifier: -1.0
+    delay: 5
+    healingBeginSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  #Lust start
+  - type: Scent
+    personalScentProfile: LustFelinid
+  #Lust end
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: AppearanceFelinid
+  id: MobFelinidDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy felinid meant to be used in character setup.
+
+#Nya~~

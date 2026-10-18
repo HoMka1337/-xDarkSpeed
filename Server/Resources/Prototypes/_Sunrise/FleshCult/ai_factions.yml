@@ -1,0 +1,23 @@
+- type: npcFaction
+  id: Flesh
+  friendly:
+  - FleshHuman
+  hostile:
+    - NanoTrasen
+    - Syndicate
+    - Xeno
+    - SimpleHostile
+    - Carps
+    - Zombie
+    - Revolutionary
+    - PetsNT
+    - Thief
+    - BloodCult
+    - Pirate
+    - Soviet
+    - SpiderClan
+
+- type: npcFaction
+  id: FleshHuman
+  friendly:
+  - Flesh

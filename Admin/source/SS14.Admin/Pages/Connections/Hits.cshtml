@@ -1,0 +1,41 @@
+﻿@page
+@using SS14.Admin.Pages.Tables
+@using SS14.Admin.Helpers
+@model SS14.Admin.Pages.Connections.Hits
+
+@{
+    ViewData["Title"] = "Сработавшие блокировки подключения";
+}
+
+<div class="container">
+    <h1>Сработавшие блокировки подключения № @Model.Log.Id</h1>
+
+    <dl class="row">
+        <dt class="col-sm-2">Имя:</dt>
+        <dd class="col-sm-10">@Model.Log.UserName</dd>
+        <dt class="col-sm-2">Код аккаунта:</dt>
+        <dd class="col-sm-10 font-monospace">@Model.Log.UserId</dd>
+        @if (User.IsInRole(Constants.PIIRole))
+        {
+            <dt class="col-sm-2">IP:</dt>
+            <dd class="col-sm-10 font-monospace">@Model.Log.Address</dd>
+            <dt class="col-sm-2">Код устройства:</dt>
+            <dd class="col-sm-10 font-monospace">@BanHelper.FormatHwid(Model.Log.HWId)</dd>
+        }
+        <dt class="col-sm-2">Время:</dt>
+        <dd class="col-sm-10">@Model.Log.Time.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+    </dl>
+</div>
+
+
+<form asp-all-route-data="@Model.AllRouteData.ShallowClone()" method="get" class="container">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search")
+    <div class="form-group row">
+        <label class="col-md-3" for="searchBar">Поиск:</label>
+        <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control form-control-sm col-md-7"/>
+        <input type="submit" value="Найти" class="btn btn-primary col-md-1 btn-sm"/>
+        <a class="btn btn-danger btn-sm col-md-1" asp-page="./Index">Сбросить</a>
+    </div>
+</form>
+
+<partial name="Tables/BansTable" model="@(new BansTableModel(Model.SortState, Model.Pagination, null, true))"/>

@@ -1,0 +1,14 @@
+ent-MobHellspawnBoss = { ent-MobHellspawn }
+    .suffix = Boss
+    .desc = { ent-MobHellspawn.desc }
+ent-ComputerBossTravel = boss battle altar
+    .desc = { ent-AltarFangs.desc }
+ent-HellSpawnCultist = { ent-MobHuman }
+    .desc = { ent-MobHuman.desc }
+ent-BulletSkyFlare = sky flare
+    .suffix = Boss
+    .desc = { ent-BaseBulletIncendiary.desc }
+ent-MobHellspawnBossSpawn = { ent-MobHellspawn }
+    .desc = { ent-MobHellspawn.desc }
+ent-HellSpawnCultistDummy = { ent-MobHuman }
+    .desc = { ent-MobHuman.desc }

@@ -1,0 +1,31 @@
+- type: marking
+  id: DemonCurvedHorns
+  bodyPart: HeadTop
+  groupWhitelist: [ Demon ]
+  sprites:
+  - sprite: _Lust/Mobs/Species/Demon/markings.rsi
+    state: curved
+
+- type: marking
+  id: DemonTwistedHorns
+  bodyPart: HeadTop
+  groupWhitelist: [ Demon ]
+  sprites:
+  - sprite: _Lust/Mobs/Species/Demon/markings.rsi
+    state: twisted
+
+- type: marking
+  id: DemonSheepHorns
+  bodyPart: HeadTop
+  groupWhitelist: [ Demon ]
+  sprites:
+  - sprite: _Lust/Mobs/Species/Demon/markings.rsi
+    state: sheep
+
+- type: marking
+  id: DemonBullHorns
+  bodyPart: HeadTop
+  groupWhitelist: [ Demon ]
+  sprites:
+  - sprite: _Lust/Mobs/Species/Demon/markings.rsi
+    state: bull

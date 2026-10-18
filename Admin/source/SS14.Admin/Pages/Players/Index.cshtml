@@ -1,0 +1,65 @@
+﻿@page
+@using SS14.Admin.Pages.Tables
+@using SS14.Admin.Helpers
+@model SS14.Admin.Pages.Players.PlayersIndexModel
+
+@{
+    ViewData["Title"] = "Игроки";
+}
+
+<form asp-page="./Index" method="get" class="container mb-3">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search")
+    <div class="form-group row">
+        <label class="col-md-3" for="searchBar">Поиск по имени, коду аккаунта или сетевому адресу:</label>
+        <div class="col-md-7">
+            <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control form-control-sm"/>
+        </div>
+        <input type="submit" value="Найти" class="btn btn-primary col-md-1 btn-sm"/>
+        <a class="btn btn-danger btn-sm col-md-1" asp-page="./Index">Сбросить</a>
+    </div>
+</form>
+
+<partial name="Tables/Pagination" for="Pagination"/>
+
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "name", "Последний логин"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "uid", "Код аккаунта"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "last_seen_time", "Последнее подключение"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "last_seen_addr", "Последний сетевой адрес"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "last_seen_hwid", "Последний код устройства"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "first_seen", "Первое подключение"))"/>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var player in Model.Pagination.List.PaginatedItems)
+    {
+        <tr>
+            <td>
+                <strong>@player.LastSeenUserName</strong>
+                <br/>
+            </td>
+            <td class="font-monospace small">@player.UserId</td>
+            <td>@player.LastSeenTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            @if (User.IsInRole(Constants.PIIRole))
+            {
+                <td class="font-monospace constrained-150">@player.LastSeenAddress</td>
+                <td class="font-monospace constrained-150">@BanHelper.FormatHwid(player.LastSeenHWId)</td>
+            }
+            else
+            {
+                <td class="font-monospace constrained-150">Скрыто</td>
+                <td class="font-monospace constrained-150">Скрыто</td>
+            }
+            <td>@player.FirstSeenTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            <td>
+                <a asp-page="/Players/Info" asp-route-userId="@player.UserId" class="btn btn-secondary">Карточка игрока</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="Tables/Pagination" for="Pagination"/>

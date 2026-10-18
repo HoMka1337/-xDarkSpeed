@@ -1,0 +1,192 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
+- type: entity
+  id: SolutionHumanoidXenoFood
+  parent: Solution
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 5
+
+- type: entity
+  id: SolutionHumanoidXenoStomach
+  parent: SolutionStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 100
+
+- type: entity
+  id: BaseHumanoidXenoOrgan
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/organs.rsi
+  - type: Organ
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionHumanoidXenoFood
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+- type: entity
+  id: OrganHumanoidXenoBrain
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseBrain]
+  name: brain
+  description: The nexus of the alien mind. Thoughts you don't want to know.
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+    - Meat
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionSunriseBrainFood
+  - type: FlavorProfile
+    flavors:
+    - people
+
+- type: entity
+  id: OrganHumanoidXenoTongue
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseTongue]
+  name: tongue
+  description: Long and flexible.
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganHumanoidXenoAppendix
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseAppendix]
+  name: appendix
+  description: An evolutionary greeting from the past.
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganHumanoidXenoEars
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseEars]
+  name: ears
+  description: Ultra-sensitive locators. Hear your fears.
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganHumanoidXenoLungs
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseLungs]
+  name: lungs
+  description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Lung
+  - type: Metabolizer
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionLungGas
+    - SolutionHumanoidXenoFood
+
+- type: entity
+  id: OrganHumanoidXenoHeart
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseHeart]
+  name: xenomorph heart
+  description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every xenomorph.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Animal]
+    stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganHumanoidXenoStomach
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseStomach]
+  name: stomach
+  description: A voracious pit.
+  components:
+  - type: Sprite
+    state: stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionHumanoidXenoStomach
+    - SolutionHumanoidXenoFood
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Animal]
+    stages: [ Digestion ]
+
+- type: entity
+  id: OrganHumanoidXenoLiver
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseLiver]
+  name: liver
+  description: A powerful detoxifier that neutralizes dangerous substances with ease.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Human]
+    stages: [ Metabolites ]
+    updateIntervalMultiplier: 10
+
+- type: entity
+  id: OrganHumanoidXenoKidneys
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseKidneys]
+  name: kidneys
+  description: Paired filters, ruthlessly taking out anything superfluous.
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+
+- type: entity
+  id: OrganHumanoidXenoEyes
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseEyes]
+  name: eyes
+  description: Eyes. They see
+  components:
+  - type: Sprite
+    state: eyes
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: HumanoidXeno

@@ -1,0 +1,7 @@
+﻿- type: entity
+  id: PartVirtual
+  parent: OrganBase
+  components:
+  - type: Sprite
+    sprite: error.rsi
+    state: error

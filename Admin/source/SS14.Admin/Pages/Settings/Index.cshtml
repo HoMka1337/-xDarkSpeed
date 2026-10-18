@@ -1,0 +1,6 @@
+@page
+@model SS14.Admin.Pages.Settings.Index
+@{ ViewData["Title"] = "Настройки"; var darkMode = Request.Cookies["darkMode"] == "true"; }
+<div class="gs-page-heading"><div><span class="gs-eyebrow">GS14 ADMIN</span><h1>Настройки</h1><p class="gs-muted">Оформление панели в этом браузере.</p></div></div>
+<div class="card gs-settings-card"><div class="card-body"><h2>Тема интерфейса</h2><p>Сейчас используется @(darkMode ? "тёмная" : "светлая") тема.</p><button type="button" class="btn btn-outline-primary" onclick="toggleDarkMode()">@(darkMode ? "Включить светлую тему" : "Включить тёмную тему")</button></div></div>
+<script src="~/js/settings.js" asp-append-version="true"></script>

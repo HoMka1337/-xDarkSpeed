@@ -1,0 +1,57 @@
+﻿@page
+@using SS14.Admin.Pages.Tables
+@using SS14.Admin.Helpers
+@model SS14.Admin.Pages.Connections.ConnectionsIndexModel
+
+@{
+    ViewData["Title"] = "Журнал подключений";
+}
+
+<form asp-page="./Index" asp-all-route-data="@Model.AllRouteData.ShallowClone()" method="get" class="container mb-3">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search", "showAccepted", "showBanned", "showWhitelist", "showFull", "showPanic")
+    <div class="form-group row">
+        <label class="col-md-3" for="searchBar">Поиск:</label>
+        <div class="col-md-7">
+            <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control form-control-sm"/>
+        </div>
+        <input type="submit" value="Найти" class="btn btn-primary col-md-1 btn-sm"/>
+        <a class="btn btn-danger btn-sm col-md-1" asp-page="./Index">Сбросить</a>
+    </div>
+    <div class="form-group row">
+        <span class="col-md-2 col-form-label">Показать:</span>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showAccepted" name="showAccepted" @(Model.ShowAccepted ? "checked" : "") value="true">
+            <label class="form-check-label" for="showAccepted">Подключение разрешено</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showBanned" name="showBanned" @(Model.ShowBanned ? "checked" : "") value="true">
+            <label class="form-check-label" for="showBanned">Заблокированные</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showWhitelist" name="showWhitelist" @(Model.ShowWhitelist ? "checked" : "") value="true">
+            <label class="form-check-label" for="showWhitelist">Белый список</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showFull" name="showFull" @(Model.ShowFull ? "checked" : "") value="true">
+            <label class="form-check-label" for="showFull">Сервер заполнен</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showPanic" name="showPanic" @(Model.ShowPanic ? "checked" : "") value="true">
+            <label class="form-check-label" for="showPanic">Защита от массовых атак</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showBabyJail" name="showBabyJail" @(Model.ShowBabyJail ? "checked" : "") value="true">
+            <label class="form-check-label" for="showBabyJail">Ограничение для новых аккаунтов</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showIPChecks" name="showIPChecks" @(Model.ShowIPChecks ? "checked" : "") value="true">
+            <label class="form-check-label" for="showIPChecks">Проверка сетевого адреса</label>
+        </div>
+        <div class="form-check col">
+            <input type="checkbox" class="form-check-input" id="showNoHwId" name="showNoHwId" @(Model.ShowNoHwid ? "checked" : "") value="true">
+            <label class="form-check-label" for="showNoHwId">Нет кода устройства</label>
+        </div>
+    </div>
+</form>
+
+<partial name="Tables/ConnectionsTable" model="@(new ConnectionsTableModel(Model.SortState, Model.Pagination))"/>

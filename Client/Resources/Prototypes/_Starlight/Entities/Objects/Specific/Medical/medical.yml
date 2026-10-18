@@ -1,0 +1,698 @@
+# BaseHealingItem
+
+- type: entity
+  parent: BaseHealingItem
+  id: BaseStarlightHealingItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    heldPrefix: ointment
+
+- type: entity
+  id: Bluebrutepack1
+  parent: Brutepack
+  name: blue bruise pack
+  description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
+  suffix: Single
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: bluebrutepack
+    layers:
+    - state: bluebrutepack
+      map: ["base"]
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    heldPrefix: bluebrutepack
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 1
+    baseLayer: base
+    layerStates:
+    - bluebrutepack
+    - bluebrutepack2
+    - bluebrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: Bluebrutepack10
+  parent: Bluebrutepack1
+  suffix: 10
+  components:
+  - type: Sprite
+    state: bluebrutepack2
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 10
+
+- type: entity
+  id: Bluebrutepack20
+  parent: Bluebrutepack1
+  suffix: Full
+  components:
+  - type: Sprite
+    state: bluebrutepack3
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 20
+
+- type: stack
+  id: Bluebrutepack
+  name: stack-bluebrutepack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: bluebrutepack }
+  spawn: Bluebrutepack1
+  maxCount: 20
+
+- type: entity
+  id: Blueointment1
+  parent: Ointment
+  name: blue ointment
+  description: Uses a special blend of dermaline, aloe, and insuzine to treat frostbite and electrical burns. Does nothing for caustic.
+  suffix: Single
+  components:
+  - type: Sprite
+    scale: 1.10,1.05
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: blueointment
+    layers:
+    - state: blueointment
+      map: ["base"]
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    heldPrefix: blueointment
+    storedSprite:
+      state: blueointment
+      sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 1
+    baseLayer: base
+    layerStates:
+    - blueointment
+    - blueointment2
+    - blueointment3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Heat: -5
+        Cold: -6
+        Shock: -8
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+
+- type: entity
+  id: Blueointment10
+  parent: Blueointment1
+  suffix: 10
+  components:
+  - type: Sprite
+    state: blueointment2
+  - type: Item
+    storedSprite:
+      state: blueointment2
+      sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 10
+
+- type: entity
+  id: Blueointment20
+  parent: Blueointment1
+  suffix: Full
+  components:
+  - type: Sprite
+    state: blueointment3
+  - type: Item
+    storedSprite:
+      state: blueointment3
+      sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 20
+
+- type: stack
+  id: Blueointment
+  name: stack-blueointment
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: blueointment }
+  spawn: Blueointment1
+  maxCount: 20
+
+- type: entity
+  id: RedOintment
+  parent: BaseStarlightHealingItem
+  name: red ointment
+  description: Uses a special blend of pyrazine and aloe to treat severe burns. Does nothing for caustic.
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    scale: 1.10,1.05
+    state: redointment3
+    layers:
+    - state: redointment3
+      map: ["base"]
+  - type: Item
+    heldPrefix: redointment
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Heat: -6
+        Cold: -6
+        Shock: -6
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: Stack
+    stackType: RedOintment
+    count: 20
+    baseLayer: base
+    layerStates:
+    - redointment
+    - redointment2
+    - redointment3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: RedOintment1
+  parent: RedOintment
+  suffix: Single
+  components:
+  - type: Sprite
+    state: redointment
+  - type: Stack
+    stackType: RedOintment
+    count: 1
+
+- type: entity
+  id: RedOintment10
+  parent: RedOintment
+  suffix: 10
+  components:
+  - type: Sprite
+    state: redointment2
+  - type: Stack
+    stackType: RedOintment
+    count: 10
+
+- type: stack
+  id: RedOintment
+  name: stack-redointment
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
+  spawn: RedOintment1
+  maxCount: 20
+
+- type: entity
+  id: SyndicateOintment
+  parent: RedOintment
+  suffix: Full
+  components:
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Heat: -6
+        Cold: -6
+        Shock: -6
+        Caustic: -3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: Stack
+    stackType: SyndicateOintment
+    count: 20
+    baseLayer: base
+    layerStates:
+    - redointment
+    - redointment2
+    - redointment3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+
+- type: entity
+  id: SyndicateOintment1
+  parent: SyndicateOintment
+  suffix: Single
+  components:
+  - type: Sprite
+    state: redointment
+  - type: Stack
+    stackType: SyndicateOintment
+    count: 1
+
+- type: stack
+  id: SyndicateOintment
+  name: stack-interdyneointment
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
+  spawn: SyndicateOintment1
+  maxCount: 20
+
+- type: entity
+  id: RedBrutePack
+  parent: BaseStarlightHealingItem
+  name: red bruise pack
+  description: Security-graded bruise packs for all your harmbaton needs.
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: redbrutepack3
+    layers:
+    - state: redbrutepack3
+      map: ["base"]
+  - type: Item
+    heldPrefix: redbrutepack
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Blunt: -6
+        Slash: -6
+        Piercing: -6
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: RedBrutePack
+    count: 20
+    baseLayer: base
+    layerStates:
+    - redbrutepack
+    - redbrutepack2
+    - redbrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: RedBrutePack1
+  parent: RedBrutePack
+  suffix: Single
+  components:
+  - type: Sprite
+    state: redbrutepack
+  - type: Stack
+    stackType: RedBrutePack
+    count: 1
+
+- type: entity
+  id: RedBrutePack10
+  parent: RedBrutePack
+  suffix: 10
+  components:
+  - type: Sprite
+    state: redbrutepack2
+  - type: Stack
+    stackType: RedBrutePack
+    count: 10
+
+- type: stack
+  id: RedBrutePack
+  name: stack-redbrutepack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redbrutepack }
+  spawn: RedBrutePack1
+  maxCount: 20
+
+- type: entity
+  id: SyndicateBrutePack
+  parent: RedBrutePack
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: SyndicateBrutePack
+    count: 20
+    baseLayer: base
+    layerStates:
+    - redbrutepack
+    - redbrutepack2
+    - redbrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+
+- type: entity
+  id: SyndicateBrutePack1
+  parent: SyndicateBrutePack
+  suffix: Single
+  components:
+  - type: Sprite
+    state: redbrutepack
+  - type: Stack
+    stackType: SyndicateBrutePack
+    count: 1
+
+- type: stack
+  id: SyndicateBrutePack
+  name: stack-interdynebrutepack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redbrutepack }
+  spawn: SyndicateBrutePack1
+  maxCount: 20
+
+- type: entity
+  id: RedPunctPack
+  parent: BaseStarlightHealingItem
+  name: red punct-laced brute pack
+  description: Specialized mixture of puncturase and security-quality red goo. Best used for bullet wounds.
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: puncturaseredbrutepack3
+    layers:
+    - state: puncturaseredbrutepack3
+      map: ["base"]
+  - type: Item
+    heldPrefix: puncturaseredbrutepack
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Piercing: -7.5
+        Slash: -2.5
+        Blunt: -2.5
+    bloodlossModifier: -1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: RedPunctPack
+    count: 20
+    baseLayer: base
+    layerStates:
+    - puncturaseredbrutepack
+    - puncturaseredbrutepack2
+    - puncturaseredbrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: RedPunctPack1
+  parent: RedPunctPack
+  suffix: Single
+  components:
+  - type: Sprite
+    state: puncturaseredbrutepack
+  - type: Stack
+    stackType: RedPunctPack
+    count: 1
+
+- type: entity
+  id: RedPunctPack10
+  parent: RedPunctPack
+  suffix: 10
+  components:
+  - type: Sprite
+    state: puncturaseredbrutepack2
+  - type: Stack
+    stackType: RedPunctPack
+    count: 10
+
+- type: stack
+  id: RedPunctPack
+  name: stack-redpunctpack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: puncturaseredbrutepack }
+  spawn: RedPunctPack1
+  maxCount: 20
+
+- type: entity
+  id: RedLacePack
+  parent: BaseStarlightHealingItem
+  name: red lace-laced brute pack
+  description: Specialized mixture of lacerinol and security-quality red goo. Best used for stab wounds.
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: lacerinolbrutepack3
+    layers:
+    - state: lacerinolbrutepack3
+      map: ["base"]
+  - type: Item
+    heldPrefix: lacerinolbrutepack
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Piercing: -2.5
+        Slash: -7.5
+        Blunt: -2.5
+    bloodlossModifier: -1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: RedLacePack
+    count: 20
+    baseLayer: base
+    layerStates:
+    - lacerinolbrutepack
+    - lacerinolbrutepack2
+    - lacerinolbrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: RedLacePack1
+  parent: RedLacePack
+  suffix: Single
+  components:
+  - type: Sprite
+    state: lacerinolbrutepack
+  - type: Stack
+    stackType: RedLacePack
+    count: 1
+
+- type: entity
+  id: RedLacePack10
+  parent: RedLacePack
+  suffix: 10
+  components:
+  - type: Sprite
+    state: lacerinolbrutepack2
+  - type: Stack
+    stackType: RedLacePack
+    count: 10
+
+- type: stack
+  id: RedLacePack
+  name: stack-redlacepack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: lacerinolbrutepack }
+  spawn: RedLacePack1
+  maxCount: 20
+
+- type: entity
+  id: RedBruizPack
+  parent: BaseStarlightHealingItem
+  name: red bruiz-laced brute pack
+  description: Specialized mixture of bruizine and security-quality red goo. Best used for blunt-force trauma.
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: bruizinebrutepack3
+    layers:
+    - state: bruizinebrutepack3
+      map: ["base"]
+  - type: Item
+    heldPrefix: bruizinebrutepack
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Piercing: -2.5
+        Slash: -2.5
+        Blunt: -7.5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: RedBruizPack
+    count: 20
+    baseLayer: base
+    layerStates:
+    - bruizinebrutepack
+    - bruizinebrutepack2
+    - bruizinebrutepack3
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds:
+    - 10
+    - 20
+  - type: Appearance
+
+- type: entity
+  id: RedBruizPack1
+  parent: RedBruizPack
+  suffix: Single
+  components:
+  - type: Sprite
+    state: bruizinebrutepack
+  - type: Stack
+    stackType: RedBruizPack
+    count: 1
+
+- type: entity
+  id: RedBruizPack10
+  parent: RedBruizPack
+  suffix: 10
+  components:
+  - type: Sprite
+    state: bruizinebrutepack2
+  - type: Stack
+    stackType: RedBruizPack
+    count: 10
+
+- type: stack
+  id: RedBruizPack
+  name: stack-redbruizpack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: bruizinebrutepack }
+  spawn: RedBruizPack1
+  maxCount: 20
+
+- type: entity
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
+  id: MobTrueDoctorbot
+  name: real doctor
+  description: Definitely a real doctor.
+  components:
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Omnizine
+        quantity: 10
+      Critical:
+        reagent: Omnizine
+        quantity: 10
+  - type: EmaggableMedibot
+    replacements:
+      # when you are fine, medibot will help you go sleep
+      Alive:
+        reagent: ChloralHydrate
+        quantity: 15
+      # when you are crit, medibot will help you have fun
+      Critical:
+        reagent: SpaceDrugs
+        quantity: 25
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Bots/medibot.rsi
+    state: medibot
+  - type: HTN
+    rootTask:
+      task: MedibotCompound
+  - type: Anchorable
+  - type: InteractionPopup
+    interactSuccessString: petting-success-medibot
+    interactFailureString: petting-failure-medibot
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
+  - type: Inventory
+    templateId: medibot
+
+- type: entity
+  name: BrigKit
+  description: A heavy-duty first aid kit with slots and hooks for medical supplies, but nothing else.
+  parent: BaseStorageItem
+  id: SecurityMedkit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    state: BrigKube
+  - type: Storage
+    whitelist:
+      tags:
+        - Bottle
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - PillCanister
+      components:
+        - Injector
+        - Pill
+    grid:
+    - 0,0,3,2
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: BrigKube
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Tag
+    tags:
+    - Medkit

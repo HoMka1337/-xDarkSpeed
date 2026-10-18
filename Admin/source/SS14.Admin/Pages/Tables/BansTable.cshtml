@@ -1,0 +1,146 @@
+﻿@model SS14.Admin.Pages.Tables.BansTableModel
+
+@{
+    var b = Model.PaginationState;
+    if (b == true)
+    {
+        <partial name="Tables/Pagination" for="Pagination"/>
+    }
+}
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <th style="min-width: 210px">
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model!.SortState, "name", "Имя"))"/>
+            /
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "uid", "Код аккаунта"))"/>
+            /
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "ip", "Сетевой адрес"))"/>
+            /
+            HWID
+        </th>
+        <th>Причина</th>
+        <th style="min-width: 210px">
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "time", "Время блокировки"))"/>
+        </th>
+        <th>
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "round", "Раунд"))"/>
+        </th>
+        <th style="min-width: 210px">Окончание</th>
+        <th style="min-width: 140px">
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "admin", "Заблокировал"))"/>
+        </th>
+        <th title="How many times this ban was 'hit' by somebody trying to connect.">
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "hits", "Срабатывания"))"/>
+        </th>
+        @*<th title="If the ban was manually unbanned then the unban time is sorted by">
+            <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "expire_time", "Время окончания"))"/>
+        </th>*@
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var ban in Model.Pagination.List.PaginatedItems)
+    {
+        var className = ban.Id == Model.HighlightBan ? "table-success" : "";
+        <tr class="@className">
+            <td>
+                @foreach (var player in ban.Players)
+                {
+                    <a asp-page="/Players/Info" asp-route-userId="@player.UserId">
+                        <strong>@player.LastSeenUserName</strong>
+                    </a>
+                    <br/>
+                }
+
+                @if (User.IsInRole(Constants.PIIRole))
+                {
+                    @foreach (var address in ban.Addresses)
+                    {
+                        <small>
+                            <strong>IP:</strong> <span class="font-monospace">@address</span>
+                        </small>
+                        <br/>
+                    }
+
+                    @foreach (var hwid in ban.Hwids)
+                    {
+                        <small>
+                            <strong>Код устройства:</strong> <span class="font-monospace">@hwid</span>
+                        </small>
+                        <br/>
+                    }
+                }
+
+                @foreach (var userId in ban.UserIds)
+                {
+                    <small>
+                        <strong>Код аккаунта:</strong> <span class="font-monospace">@userId</span>
+                    </small>
+                    <br/>
+                }
+            </td>
+            <td>@ban.Reason</td>
+            <td>@ban.BanTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            <td>@(string.Join(", ", ban.Rounds))</td>
+            <td>
+                @(ban.Expires?.ToString("yyyy-MM-dd HH:mm:ss") ?? "БЕССРОЧНО")
+                @if (ban.Unbanned is { } unbanned)
+                {
+                    var (time, admin) = unbanned;
+                    <br>
+                    <text><strong>Блокировка снята:</strong> @time.ToString("yyyy-MM-dd HH:mm:ss") — администратор: @admin</text>
+                }
+                else if (ban.Expires < DateTime.UtcNow)
+                {
+                    <br>
+                    <strong>Срок истёк</strong>
+                }
+            </td>
+            <td>@ban.Admin</td>
+            <td>
+                @if (ban.hitCount != 0)
+                {
+                    var plural = ban.hitCount > 1;
+                    <a asp-page="/Bans/Hits" class="btn btn-secondary" asp-route-ban="@ban.Id">@ban.hitCount @(plural ? "срабатываний" : "срабатывание")</a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-secondary disabled">0 срабатываний</a>
+                }
+            </td>
+            <td>
+                @if (ban.Active && User.IsInRole("BAN"))
+                {
+                    <form id="unban-form-@ban.Id" asp-page="/Bans/Index" asp-page-handler="Unban">
+                        <input type="hidden" name="Id" value="@ban.Id">
+                        <button type="button" class="btn btn-secondary" onclick="showConfirmation('@ban.Id')">Снять блокировку</button>
+                        <div class="confirmation-button" id="confirmation-button-@ban.Id" style="display: none;">
+                            <button type="submit" class="btn btn-danger">Подтвердить действие?</button>
+                        </div>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script>
+    function showConfirmation(banId) {
+        const confirmationButton = document.getElementById('confirmation-button-' + banId);
+        const unbanButton = document.getElementById('unban-form-' + banId).querySelector('button[type="button"]');
+        confirmationButton.style.display = 'block';
+        unbanButton.style.display = 'none';
+        setTimeout(function() {
+            confirmationButton.style.display = 'none';
+            unbanButton.style.display = 'block';
+        }, 3000); // Revert after 3 seconds
+    }
+</script>
+
+@if (b == true)
+{
+<partial name="Tables/Pagination" for="Pagination"/>
+}
+

@@ -1,0 +1,187 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
+- type: entity
+  id: SolutionPredatorFood
+  parent: Solution
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: FluorosulfuricAcidPredator
+        Quantity: 5
+
+- type: entity
+  id: BasePredatorOrgan
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/organs.rsi
+  - type: Organ
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionPredatorFood
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+- type: entity
+  id: OrganPredatorBrain
+  parent: [BasePredatorOrgan, SunriseOrganBaseBrain]
+  name: brain
+  description: The nexus of the alien mind. Thoughts you don't want to know.
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionSunriseBrainFood
+  - type: FlavorProfile
+    flavors:
+    - people
+
+- type: entity
+  id: OrganPredatorTongue
+  parent: [BasePredatorOrgan, SunriseOrganBaseTongue]
+  name: tongue
+  description: Long and flexible.
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganPredatorAppendix
+  parent: [BasePredatorOrgan, SunriseOrganBaseAppendix]
+  name: appendix
+  description: An evolutionary greeting from the past.
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganPredatorEars
+  parent: [BasePredatorOrgan, SunriseOrganBaseEars]
+  name: ears
+  description: Ultra-sensitive locators. Hear your fears.
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganPredatorLungs
+  parent: [BasePredatorOrgan, SunriseOrganBaseLungs]
+  name: lungs
+  description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Lung
+  - type: Metabolizer
+    metabolizerTypes: [ Human ]
+    stages: [ Respiration ]
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionLungGas
+    - SolutionPredatorFood
+
+- type: entity
+  id: OrganPredatorHeart
+  parent: [BasePredatorOrgan, SunriseOrganBaseHeart]
+  name: predator heart
+  description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every predator.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganPredatorStomach
+  parent: [BasePredatorOrgan, SunriseOrganBaseStomach]
+  name: stomach
+  description: A voracious pit.
+  components:
+  - type: Sprite
+    state: stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionSunriseOrganNutriment
+    - SolutionSunriseStomachSmall
+    - SolutionPredatorFood
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Human, Animal]
+    stages: [ Digestion ]
+
+- type: entity
+  id: OrganPredatorLiver
+  parent: [BasePredatorOrgan, SunriseOrganBaseLiver]
+  name: liver
+  description: A powerful detoxifier that neutralizes dangerous substances with ease.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Human]
+    stages: [ Metabolites ]
+    updateIntervalMultiplier: 10
+
+- type: entity
+  id: OrganPredatorKidneys
+  parent: [BasePredatorOrgan, SunriseOrganBaseKidneys]
+  name: kidneys
+  description: Paired filters, ruthlessly taking out anything superfluous.
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+
+- type: entity
+  id: OrganPredatorEyes
+  parent: [BasePredatorOrgan, SunriseOrganBaseEyes]
+  name: eyes
+  description: I see YOU!
+  components:
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: Predator

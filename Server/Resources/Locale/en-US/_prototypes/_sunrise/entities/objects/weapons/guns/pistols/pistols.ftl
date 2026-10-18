@@ -1,0 +1,27 @@
+ent-BaseWeaponPistolSunrise = basePistol
+    .desc = A rooty tooty point and shooty.
+    .suffix = Sunrise
+ent-WeaponPistolVP78 = combat pistol VP-70
+    .desc = { ent-BaseWeaponPistol.desc }
+ent-WeaponPistolG22Prison = glock-22 Prison
+    .desc = Manufactured by special order for prison complex security. Semi-automatic firearm chambered in .35 Auto.
+    .suffix = Sunrise
+ent-WeaponRevolverMatebaNew = mateba
+    .desc = { ent-BaseWeaponRevolver.desc }
+ent-WeaponPistolDeagle = desert Eagle
+    .desc = { ent-BaseWeaponPistol.desc }
+ent-WeaponRevolverSpearhead = spearhead autorevolver
+    .desc = A bulky revolver, occasionally carried by assault troops and officers in SWAT, as well as civilian law enforcement. Fires .45 Magnum rounds.
+ent-WeaponPistolM1984 = d1984
+    .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .40.
+ent-WeaponPistolDeagleGolden = golden Desert Eagle
+    .desc = Fires a .45 magnum cartridge. Engraved: All I remember of him are two gold-plated .45 Desert Eagles.
+
+ent-SunriseWeaponSubMachineGunUzi = type U3 Uzi
+    .desc = Lightweight and iconic submachine gun with a large magazine and high rate of fire.
+ent-WeaponPistolDeagleBiocode = { ent-WeaponPistolDeagle }
+    .suffix = BIOCODE
+    .desc = { ent-WeaponPistolDeagle.desc }
+ent-WeaponPistolDeagleGoldenBiocode = { ent-WeaponPistolDeagleGolden }
+    .suffix = BIOCODE
+    .desc = { ent-WeaponPistolDeagleGolden.desc }

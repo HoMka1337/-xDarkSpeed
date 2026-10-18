@@ -1,0 +1,13 @@
+ent-RCDAdvancedSunrise = продвинутый РСУ
+    .suffix = Старший Инженер, Автозарядка
+    .desc = Блюспейс-улучшенное РСУ, пассивно регенирурющий заряды.
+ent-WirecutterAbductor = кусачки абдукторов
+    .desc = { ent-BaseItem.desc }
+ent-ScrewdriverAbductor = отвёртка абдукторов
+    .desc = { ent-BaseItem.desc }
+ent-WrenchAbductor = гаечный ключ абдукторов
+    .desc = { ent-Wrench.desc }
+ent-MultitoolAbductor = мультитул абдукторов
+    .desc = { ent-Multitool.desc }
+ent-HandHeldMassScannerPirate = голографическая пиратская карта
+    .desc = Ручной сканер масс, замаскированный под светящуюся пиратскую карту.

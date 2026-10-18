@@ -1,0 +1,105 @@
+﻿@using Content.Server.Database
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SS14.Admin.Helpers
+@model SS14.Admin.Pages.Tables.ConnectionsTableModel
+
+<partial name="Tables/Pagination" for="Pagination"/>
+
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model!.SortState, "name", "Логин игрока"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "uid", "Код аккаунта"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "time", "Время"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "addr", "Сетевой адрес"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "hwid", "Код устройства"))"/>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "denied", "Состояние"))"/>
+        <th>
+            Сервер
+        </th>
+        <th>
+            Уровень доверия
+        </th>
+        <partial name="Tables/SortTabHeader" model="@(new SortTabHeaderModel(Model.SortState, "hits", "Сработавшие блокировки"))"/>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var (log, banHits, player) in Model.Pagination.List.PaginatedItems)
+    {
+        <tr>
+            <td>
+                @if (player == null)
+                {
+                    <strong>@log.UserName</strong>
+                }
+                else
+                {
+                    <a asp-page="/Players/Info" asp-route-userId="@player.UserId">
+                        <strong>@log.UserName</strong>
+                    </a>
+                }
+                <br/>
+            </td>
+            <td class="font-monospace">@log.UserId</td>
+            <td>@log.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            @if (User.IsInRole(Constants.PIIRole))
+            {
+                <td class="font-monospace constrained-150">@log.Address</td>
+                <td class="font-monospace constrained-150">@(log.HWId?.ToImmutable())</td>
+            }
+            else
+            {
+                <td class="font-monospace constrained-150">Скрыто</td>
+                <td class="font-monospace constrained-150">Скрыто</td>
+            }
+            <td>
+                @switch (log.Denied)
+                {
+                    case ConnectionDenyReason.Ban:
+                        <strong>Отказ: блокировка</strong>
+                        break;
+                    case ConnectionDenyReason.Whitelist:
+                        <strong>Отказ: нет в белом списке</strong>
+                        break;
+                    case ConnectionDenyReason.Full:
+                        <strong>Отказ: сервер заполнен</strong>
+                        break;
+                    case ConnectionDenyReason.Panic:
+                        <strong>Отказ: защита от массовых атак</strong>
+                        break;
+                    case ConnectionDenyReason.BabyJail:
+                        <strong>Отказ: ограничение для новых аккаунтов</strong>
+                        break;
+                    case ConnectionDenyReason.IPChecks:
+                        <strong>Отказ: проверка сетевого адреса</strong>
+                        break;
+                    case ConnectionDenyReason.NoHwid:
+                        <strong>Отказ: нет кода устройства</strong>
+                        break;
+                    case null:
+                        <span>Подключение разрешено</span>
+                        break;
+                }
+            </td>
+            <td>
+                @log.Server.Name
+            </td>
+            <td>@log.Trust</td>
+            <td>
+                @if (banHits != 0)
+                {
+                    <!-- In this case, "hit" is the verb. In the bans index, it's a (possibly plural) noun. -->
+                    <!-- Yes, this is VERY subtle -->
+                    <a asp-page="/Connections/Hits" class="btn btn-secondary" asp-route-connection="@log.Id">@banHits срабатываний</a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-secondary disabled">0 срабатываний</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="Tables/Pagination" for="Pagination"/>

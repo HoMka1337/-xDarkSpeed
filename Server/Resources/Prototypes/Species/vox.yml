@@ -1,0 +1,19 @@
+- type: species
+  id: Vox
+  name: species-name-vox
+  roundStart: true # Ржомба)))
+  prototype: MobVox
+  bodyTypes: # Sunrise-Edit
+  - VoxNormal
+  dollPrototype: AppearanceVox
+  skinColoration: VoxFeathers
+  defaultSkinTone: "#6c741d"
+  maleFirstNames: NamesVox
+  femaleFirstNames: NamesVox
+  naming: First
+  sexes:
+  - Unsexed
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # Sunrise-Edit

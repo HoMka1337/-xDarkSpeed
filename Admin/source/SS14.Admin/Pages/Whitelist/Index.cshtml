@@ -1,0 +1,81 @@
+﻿@page
+@using SS14.Admin.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SS14.Admin.Pages.Tables
+@model SS14.Admin.Pages.Whitelist.Index
+
+@{
+    ViewData["Title"] = "Белый список";
+
+    var highlightWhitelist = default(Guid);
+    if (TempData.TryGetValue("HighlightNewWhitelist", out var highlightObj))
+    {
+        highlightWhitelist = (Guid)highlightObj!;
+    }
+}
+
+<partial name="Shared/StatusMessageAlert" />
+
+<div class="container mb-3">
+    <a class="btn btn-primary" asp-page="./AddWhitelist">Добавить игрока</a>
+</div>
+
+<form asp-page="./Index" method="get" class="container mb-3">
+    @FormHiddenRoutes.Make(Model.AllRouteData, "search")
+    <div class="form-group row">
+        <label class="col-md-2" for="searchBar">Поиск по имени или коду аккаунта:</label>
+        <div class="col-md-8">
+            <input type="text" id="searchBar" name="search" value="@Model.CurrentFilter" class="form-control form-control-sm"/>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Найти" class="btn btn-primary btn-sm w-100"/>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-danger btn-sm w-100" asp-page="./Index">Сбросить</a>
+        </div>
+    </div>
+</form>
+
+<partial name="Tables/Pagination" for="Pagination"/>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "name", "Имя"))"/>
+                /
+                <partial name="Tables/SortTabHeaderCore" model="@(new SortTabHeaderModel(Model.SortState, "uid", "Код аккаунта"))"/>
+            </th>
+            <th></th>
+        </tr>
+
+        </thead>
+        <tbody>
+        @foreach (var (whitelist, player) in Model.Pagination.List.PaginatedItems)
+        {
+            var className = whitelist.UserId == highlightWhitelist ? "table-success" : "";
+            <tr class="@className">
+                <td>
+                    @if (player != null)
+                    {
+                        <a asp-page="/Players/Info" asp-route-userId="@player.UserId">
+                            <strong>@player.LastSeenUserName</strong>
+                        </a>
+                        <br/>
+                    }
+
+                    <small>
+                        <strong>Код аккаунта:</strong> <span class="font-monospace">@whitelist.UserId</span>
+                    </small>
+                </td>
+                <td>
+                    <a asp-page="./RemoveWhitelist" asp-route-userId="@whitelist.UserId" class="btn btn-secondary">Удалить</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<partial name="Tables/Pagination" for="Pagination"/>

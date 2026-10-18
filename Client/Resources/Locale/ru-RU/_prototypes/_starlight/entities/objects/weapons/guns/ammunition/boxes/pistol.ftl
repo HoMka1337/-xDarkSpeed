@@ -1,0 +1,10 @@
+ent-BaseMagazineBoxPistol40 = коробка патронов (.40)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxPistol40SP = коробка патронов (.40)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40HP = коробка патронов (.40 эксп)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40FMJ = коробка патронов (.40 ПП)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40AP = коробка патронов (.40 ББ)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }

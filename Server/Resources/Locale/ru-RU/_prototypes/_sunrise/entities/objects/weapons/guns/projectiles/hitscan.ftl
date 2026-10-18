@@ -1,0 +1,14 @@
+ent-HitscanEffectTracer = { "" }
+    .desc = { "" }
+ent-BulletPistolTraceSP = .35
+    .desc = { ent-BaseBullet.desc }
+ent-BulletPistolTraceHP = .35 эксп
+    .desc = { ent-BaseBullet.desc }
+ent-BulletPistolTraceFMJ = .35 ПП
+    .desc = { ent-BaseBullet.desc }
+ent-BulletPistolTraceRubber = .35 резина
+    .desc = { ent-BaseBullet.desc }
+ent-BulletRifleTraceSP = 5,56
+    .desc = { ent-BaseBullet.desc }
+ent-BulletRifleTraceFMJ = 5,56 ПП
+    .desc = { ent-BaseBullet.desc }

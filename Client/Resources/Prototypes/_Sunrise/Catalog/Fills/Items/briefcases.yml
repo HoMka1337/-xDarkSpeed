@@ -1,0 +1,183 @@
+- type: entity
+  id: BriefcaseIAAFilled
+  parent: BriefcaseBrown
+  suffix: IAA
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+          - id: PenCentcomQillu # Lust-Edit
+          - id: RubberStampIAA
+
+- type: entity
+  id: BriefcaseWeaponVectorFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Vector Super case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunVector
+        - id: MagazineBoxPistol40SP
+
+- type: entity
+  id: BriefcaseWeaponUziFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Uzi case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SunriseWeaponSubMachineGunUzi
+        - id: SMGAmmoKit
+
+- type: entity
+  id: BriefcaseWeaponSIAR52Filled
+  parent: BriefcaseWeaponSmall
+  name: secure SIAR-52 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: WeaponSIAR52
+
+- type: entity
+  id: BriefcaseWeaponAJ100Filled
+  parent: BriefcaseWeaponSmall
+  name: secure AJ-100 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: WeaponAJ100
+
+- type: entity
+  id: BriefcaseWeaponDragunovFilled
+  parent: BriefcaseWeapon
+  name: secure dragunov case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperDragunov
+        - id: DragunovAmmoKit
+          amount: 3
+
+- type: entity
+  id: BriefcaseWeaponDMRFilled
+  parent: BriefcaseWeapon
+  name: secure estoc case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleEstoc
+        - id: MagazineRifle
+        - id: MagazineRifleAP
+
+- type: entity
+  id: BriefcaseWeaponType88AMRFilled
+  parent: BriefcaseWeapon
+  name: secure Type 88 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleType88AMR
+        - id: MagazineBauer127Penetrator
+        - id: MagazineBauer127
+        - id: MagazineBoxAntiMateriel
+          amount: 2
+
+- type: entity
+  id: BriefcaseWeaponM79Filled
+  parent: BriefcaseWeapon
+  name: secure m79 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherM79
+        - id: GrenadeFragTimer
+          amount: 3
+        - id: GrenadeEMPTimer
+
+- type: entity
+  id: BriefcaseWeaponSKM24Filled
+  parent: BriefcaseWeapon
+  name: secure SKM-24 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM24Syndi
+        - id: MagazineLightRifleSP
+          amount: 2
+        - id: MagazineLightRifleFMJ
+          amount: 2
+
+- type: entity
+  id: BriefcaseWeaponSKM28Filled
+  parent: BriefcaseWeapon
+  name: secure SKM-28 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM28Syndi
+        - id: MagazineRifleHeavySP
+          amount: 4
+
+- type: entity
+  id: BriefcaseWeaponMinotaurFilled
+  parent: BriefcaseWeapon
+  name: secure AS-12 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunMinotaur
+        - id: MagazineShotgunXL
+
+- type: entity
+  id: BriefcaseWeaponDeagleFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Deagle case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: MagazineMagnumAP
+        - id: MagazineMagnumAP
+
+- type: entity
+  id: BriefcaseWeaponGarandFilled
+  parent: [ BaseSalvageContraband, BriefcaseWeapon ]
+  name: secure Garand case
+  description: A secure weapon case containing an M1 Garand, a spare .308 clip, and a blueprint for producing more clips.
+  suffix: Garand, Filled
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperGarand
+        - id: MagazineGarand
+        - id: BlueprintMagazineGarand

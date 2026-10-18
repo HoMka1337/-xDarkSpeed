@@ -1,0 +1,13 @@
+ent-MagazineMachineGunMG42 = mG42 magazine
+    .desc = { ent-BaseItem.desc }
+ent-MagazineLightMachineGunMG60 = mG60 magazine
+    .desc = { ent-BaseItem.desc }
+ent-MagazineVP70 = vP70 magazine
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolSubMachineGunCaselessExtended = extended magazine (caseless)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineLightRifleImprovised = magazine (.30 rifle improvised)
+    .desc = Curved 20-round double stack magazine for combat rifles. Intended to hold improvised ammunition.
+ent-MagazineLightRifleImprovisedEmpty = { ent-MagazineLightRifleImprovised }
+    .suffix = Empty
+    .desc = { ent-MagazineLightRifleImprovised.desc }

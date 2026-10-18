@@ -1,0 +1,107 @@
+﻿@page
+@model SS14.Admin.Pages.RoleBans.Create
+
+@{
+    ViewData["Title"] = "Создать блокировку роли";
+}
+
+<partial name="Shared/StatusMessageAlert" />
+
+<form method="post" asp-page-handler="Create" class="container">
+    <div class="form-group row">
+        <label asp-for="Input.NameOrUid" class="col-sm-3 col-form-label">Логин или код аккаунта</label>
+        <div class="col-sm-9">
+            <input asp-for="Input.NameOrUid" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Input.IP" class="col-sm-3 col-form-label">Сетевой адрес или подсеть (CIDR)</label>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm">
+                    <input asp-for="Input.IP" value="@Model.Input.IP" class="form-control">
+                </div>
+                <div class="col-sm-auto">
+                    <input asp-page-handler="Fill" type="submit" value="Найти последние данные" class="btn btn-secondary btn-block">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Input.HWid" class="col-sm-3 col-form-label">Код устройства</label>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm">
+                    <input asp-for="Input.HWid" value="@Model.Input.HWid" class="form-control">
+                </div>
+                <div class="col-sm-auto">
+                    <input asp-page-handler="Fill" type="submit" value="Найти последние данные" class="btn btn-secondary btn-block">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Input.LengthMinutes" class="col-sm-3 col-form-label">Срок в минутах (0 — бессрочно)</label>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-lg-6">
+                    <input asp-for="Input.LengthMinutes" id="durationInput" class="form-control">
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-0">
+                        <button data-duration="60" data-suffix=" ч" class="durationButton btn btn-secondary col"></button>
+                        <button data-duration="1440" data-suffix=" дн" class="durationButton btn btn-secondary col"></button>
+                        <button data-duration="10080" data-suffix=" нед" class="durationButton btn btn-secondary col"></button>
+                        <button data-duration="43200" data-suffix=" мес" class="durationButton btn btn-secondary col"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Input.Role" class="col-sm-3 col-form-label">Роль</label>
+        <div class="col-sm-9">
+            <input asp-for="Input.Role" class="form-control" placeholder="Формат: Job:Captain — укажи точный код должности">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Input.Reason" class="col-sm-3 col-form-label">Причина</label>
+        <div class="col-sm-9">
+            <textarea asp-for="Input.Reason" class="form-control"></textarea>
+        </div>
+    </div>
+    <input type="submit" asp-page-handler="Create" value="Создать" class="btn btn-primary">
+</form>
+
+
+<script>
+{
+    let durationInput = document.getElementById("durationInput");
+    let updateButtons = function() {
+        for (const btn of document.querySelectorAll(".durationButton")) {
+            let dur = Number(btn.dataset.duration);
+            let suffix = btn.dataset.suffix;
+
+            let val = Number(durationInput.value);
+            val /= dur;
+            btn.innerText = `+1${suffix} (${Math.round(val)})`;
+        }
+    };
+
+    durationInput.addEventListener("change", () => {
+        updateButtons();
+    });
+
+    for (const btn of document.querySelectorAll(".durationButton")) {
+        let dur = Number(btn.dataset.duration);
+        btn.addEventListener("click", e => {
+            durationInput.value = (Number(durationInput.value) + dur).toString();
+            updateButtons();
+            e.preventDefault();
+        });
+    }
+
+    updateButtons();
+}
+
+</script>

@@ -1,0 +1,202 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+    "copyright": "Starlight, Menders and Bandaid's taked from Paradise Station",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "brutepack"
+		},
+		{
+			"name": "brutepack2"
+		},
+		{
+			"name": "brutepack3"
+		},
+		{
+			"name": "brutepack-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "brutepack-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "bluebrutepack"
+		},
+		{
+			"name": "bluebrutepack2"
+		},
+		{
+			"name": "bluebrutepack3"
+		},
+		{
+			"name": "bluebrutepack-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "bluebrutepack-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "blueointment"
+		},
+		{
+			"name": "blueointment2"
+		},
+		{
+			"name": "blueointment3"
+		},
+		{
+			"name": "blueointment-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "blueointment-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "redbrutepack"
+		},
+		{
+			"name": "redbrutepack2"
+		},
+		{
+			"name": "redbrutepack3"
+		},
+		{
+			"name": "puncturaseredbrutepack"
+		},
+		{
+			"name": "puncturaseredbrutepack2"
+		},
+		{
+			"name": "puncturaseredbrutepack3"
+		},
+		{
+			"name": "lacerinolbrutepack"
+		},
+		{
+			"name": "lacerinolbrutepack2"
+		},
+		{
+			"name": "lacerinolbrutepack3"
+		},
+		{
+			"name": "bruizinebrutepack"
+		},
+		{
+			"name": "bruizinebrutepack2"
+		},
+		{
+			"name": "bruizinebrutepack3"
+		},
+		{
+			"name": "redointment"
+		},
+		{
+			"name": "redointment2"
+		},
+		{
+			"name": "redointment3"
+		},
+		{
+			"name": "ointment"
+		},
+		{
+			"name": "ointment2"
+		},
+		{
+			"name": "ointment3"
+		},
+		{
+			"name": "ointment-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "ointment-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "medicated-suture"
+		},
+		{
+			"name": "medicated-suture2"
+		},
+		{
+			"name": "medicated-suture3"
+		},
+		{
+			"name": "medicated-suture4"
+		},
+		{
+			"name": "medicated-suture-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "medicated-suture-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "regenerative-mesh"
+		},
+		{
+			"name": "regenerative-mesh1"
+		},
+		{
+			"name": "regenerative-mesh2"
+		},
+		{
+			"name": "regenerative-mesh3"
+		},
+		{
+			"name": "regenerative-mesh-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "regenerative-mesh-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "mender"
+		},
+		{
+			"name": "mender1"
+		},
+		{
+			"name": "mender2"
+		},
+		{
+			"name": "mender3"
+		},
+		{
+			"name": "mender-inhand-left",
+            "directions": 4
+		},
+		{
+			"name": "mender-inhand-right",
+            "directions": 4
+		},
+		{
+			"name": "bandaid"
+		},
+		{
+			"name": "bandaid-brute"
+		},
+		{
+			"name": "bandaid-burn"
+		},
+		{
+			"name": "bandaid-burn-small"
+		},
+		{
+			"name": "bandaid-clown"
+		},
+		{
+			"name": "bandaid-med"
+		}
+    ]
+}

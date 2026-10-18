@@ -1,0 +1,163 @@
+@page
+@model SS14.Admin.Pages.Logs.LogsIndexModel
+@using SS14.Admin.AdminLogs
+@using SS14.Admin.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Журнал администратора";
+    var prevDisabled = Model.PageIndex == 0 ? "disabled" : "";
+    var nextDisabled = (Model.Items.Count == 0) ? "disabled" : "";
+    var nextPageIdx = Model.PageIndex + 1;
+    var prevPageIdx = Model.PageIndex == 1 ? null : (int?) Model.PageIndex - 1;
+}
+@section Styles {
+    <link href="@Url.Content("~/css/logs.css")" rel="stylesheet" type="text/css"/>
+}
+
+<data-grid>
+    <data-grid-filter class="flex-row">
+        <div class="form-group" style="display: inline-block; align-items: center;">
+            <div style="display: inline-block">
+                <label for="datePicker">Период:<button id="litepicker-close" class="btn btn-sm"><i class="fas fa-times"></i></button></label>
+                <input class="form-control" name="daterange" id="datePicker" type="text" value="@(Model.FromDate)" placeholder="Начало — конец периода"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="search">Поиск по тексту</label>
+            <input name="search" class="form-control" id="search" type="text" placeholder="Найти"/>
+        </div>
+        <div class="form-group">
+            <label for="server">Сервер</label>
+            <input id="server" name="server" class="form-control" type="text" placeholder="Любой"/>
+        </div>
+        <div class="form-group">
+            <label for="roundId">Раунд</label>
+            <input id="roundId" name="roundId" class="form-control" type="number" placeholder="Любой"/>
+        </div>
+        <div class="form-group">
+            <label for="player">Игрок</label>
+            <input id="player" name="player" class="form-control" type="text" placeholder="Все игроки"/>
+        </div>
+        <div class="form-group" id="autocomplete-container">
+            <label for="logTypeInput">Тип</label>
+            <input id="logTypeInput" name="type" class="form-control" type="text" placeholder="Любой"/>
+            <div id="autocompleteOptions"></div>
+        </div>
+        <div class="form-group">
+            <label for="severitySelect">Серьёзность</label>
+            <select class="form-control" name="severity" id="severitySelect">
+                @foreach (var option in Model.SeverityOptions)
+                {
+                    if (Model.SeveritySearch == option.Key)
+                    {
+                        <option class="@(option.Key switch { -1 => "Low", 0 => "Medium", 1 => "High", 2 => "Extreme", _ => "" })" value="@option.Key" selected>@option.Value</option>
+                    }
+                    else
+                    {
+                        <option class="@(option.Key switch { -1 => "Low", 0 => "Medium", 1 => "High", 2 => "Extreme", _ => "" })" value="@option.Key">@option.Value</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="flex-seperator"></div>
+    </data-grid-filter>
+    <table class="results-table table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Номер раунда</th>
+            <th>Сервер</th>
+            <th class="text-center">Серьёзность</th>
+            <th>Дата</th>
+            <th>Тип</th>
+            <th>Сообщение</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        @foreach (var entry in Model.Items)
+        {
+            <tr class="on-click data-log">
+                <td>@entry.RoundId</td>
+                <td>@entry.Round?.Server?.Name</td>
+                <td class="text-center colored" style="--cell-color: var(@entry.Impact.CssColorVarName())">@SS14.Admin.LustRussianUi.Name(entry.Impact)</td>
+                <td>@entry.Date</td>
+                <td>@entry.Type</td>
+                <td>@entry.Message</td>
+                <template>
+                    <div class="log-details-header flex-row" style="--cell-color: var(@entry.Impact.CssColorVarName())">
+                        <h2>Подробности</h2>
+                        <span class="details-close fa fa-times" onclick="onDetailsClose()"></span>
+                    </div>
+                    <div class="log-details-sub log-muted">
+                        <p>Сервер: <a href="#">@entry.Round?.Server?.Name</a></p>
+                        <p>Раунд: <a href="#">@entry.RoundId</a></p>
+                    </div>
+                    <h3>Сообщение:</h3>
+                    <p>@entry.Message</p>
+                    <hr class="line-inset">
+                    <h4>Данные:</h4>
+                    <log-json json="entry.Json"></log-json>
+                </template>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <data-grid-footer class="flex-row">
+    </data-grid-footer>
+
+    @if (Model.Items.Count == 0)
+    {
+        <div class="flex-row flex-center">
+            <p class="m-4">Записи журнала не найдены.</p>
+        </div>
+    }
+
+    @if (Model.Items.Count != 0)
+    {
+        <data-grid-footer class="flex-row flex-center">
+            <a asp-page="./Index"
+               asp-all-route-data="@Model.AllRouteData.ShallowClone()"
+               asp-route-pageIndex="@prevPageIdx"
+               class="btn btn-primary btn-sm @prevDisabled">
+                Назад
+            </a>
+            <div class="form-horizontal">
+                <select name="countselect" id="countselect" class="form-control form-control-sm" value="@Model.PerPage">
+                    @foreach (var amount in Model.PaginationOptions)
+                    {
+                        if (Model.PerPage.ToString() == amount)
+                        {
+                            <option value="@amount" selected>@amount</option>
+                        }
+                        else
+                        {
+                            <option value="@amount">@amount</option>
+                        }
+                    }
+                </select>
+            </div>
+            <a asp-page="./Index"
+               asp-all-route-data="@Model.AllRouteData.ShallowClone()"
+               asp-route-pageIndex="@nextPageIdx"
+               class="btn btn-primary btn-sm @nextDisabled">
+                Вперёд
+            </a>
+        </data-grid-footer>
+    }
+</data-grid>
+
+<div class="side-panel-container">
+    <div id="side-panel-overlay" class="side-panel-overlay hidden"></div>
+    <div id="side-panel" class="side-panel transition-right hidden-right"></div>
+</div>
+
+@section scripts {
+    <script type="application/javascript">
+        // Putting the "JavaScript" in "JavaScript Object Notation"
+        const AdminLogType = @Html.Raw(AdminLogTypeHelper.AdminLogTypeJson);
+    </script>
+    <script src="~/js/datepicker.js" asp-append-version="true"></script>
+    <script src="~/js/logs-search.js" asp-append-version="true"></script>
+    <script src="~/js/logs-grid.js" asp-append-version="true"></script>
+    <script src="~/js/log-type-autocomplete.js" asp-append-version="true"></script>
+}

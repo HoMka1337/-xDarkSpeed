@@ -1,0 +1,83 @@
+@using SS14.Admin.SignIn
+@inject SignInManager SignInManager
+@{
+    var signIn = SignInManager.GetSignInData(User);
+    var darkModeClass = Context.Request.Cookies["darkMode"] == "true" ? "dark" : "light";
+    var currentSection = Context.Request.Path.Value?.Split('/', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "";
+    string Active(string section) => currentSection.Equals(section, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="@darkModeClass">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#172235" />
+    <title>@ViewData["Title"] — GS14 Admin</title>
+    <link rel="icon" type="image/svg+xml" href="~/gs14-icon.svg" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gs14.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+<a class="visually-hidden-focusable gs-skip" href="#main-content">Перейти к содержимому</a>
+<header class="gs-header">
+    <div class="gs-topbar">
+        <div class="gs-width gs-topbar-inner">
+            <a class="gs-brand navbar-brand" asp-page="/Index" aria-label="GS14 Admin — главная">
+                <span class="gs-wordmark">GS<span>14</span></span>
+                <span class="gs-brand-text"><strong>ADMIN</strong><span>Grible Station</span></span>
+            </a>
+            <div class="gs-account">
+                @if (signIn == null)
+                {
+                    <span class="gs-account-caption">Панель администратора</span>
+                    <a class="btn btn-sm gs-login" asp-controller="Login" asp-action="Index"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Войти</a>
+                }
+                else
+                {
+                    <span class="gs-account-name"><i class="fas fa-user-circle" aria-hidden="true"></i> @signIn.Name</span>
+                    <a class="gs-account-link nav-link" asp-page="/Settings/Index">Настройки</a>
+                    <a class="gs-account-link nav-link" asp-controller="Login" asp-action="Logout">Выйти</a>
+                }
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg gs-navigation" aria-label="Основная навигация">
+        <div class="gs-width gs-nav-inner">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gs-menu" aria-controls="gs-menu" aria-expanded="false" aria-label="Открыть меню"><span class="navbar-toggler-icon"></span><span class="gs-menu-label">Разделы панели</span></button>
+            <div class="collapse navbar-collapse" id="gs-menu">
+                <ul class="navbar-nav gs-nav">
+                    <li class="nav-item"><a class="nav-link @Active("")" asp-page="/Index"><i class="fas fa-home" aria-hidden="true"></i> Обзор</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Players")" asp-page="/Players/Index">Игроки</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Bans")" asp-page="/Bans/Index">Блокировки</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("RoleBans")" asp-page="/RoleBans/Index">Блокировки ролей</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Connections")" asp-page="/Connections/Index">Подключения</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Logs")" asp-page="/Logs/Index">Журнал</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Characters")" asp-page="/Characters/Index">Персонажи</a></li>
+                    <li class="nav-item"><a class="nav-link @Active("Whitelist")" asp-page="/Whitelist/Index">Белый список</a></li>
+                    @if (User.IsInRole("PERMISSIONS"))
+                    {
+                        <li class="nav-item"><a class="nav-link @Active("Rewards")" asp-page="/Rewards/Index">Выдачи</a></li>
+                        <li class="nav-item"><a class="nav-link @Active("Sponsors")" asp-page="/Sponsors/Index">Спонсоры</a></li>
+                        <li class="nav-item"><a class="nav-link @Active("Administrators")" asp-page="/Administrators/Index">Администраторы</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="gs-width gs-main">
+    <main id="main-content" class="gs-content" tabindex="-1">@RenderBody()</main>
+</div>
+<footer class="gs-footer"><div class="gs-width"><span>GS14 Admin</span><span>Grible Station · Панель управления сервером</span></div></footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/litepicker/litepicker.min.js"></script>
+<script src="~/lib/popper/popper.min.js"></script>
+<script src="~/lib/luxon.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
